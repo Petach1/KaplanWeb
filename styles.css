@@ -9,7 +9,6 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
-    padding-top: 60px; /* Přidá odsazení, aby obsah nezačínal pod navigací */
 }
 
 .container {
@@ -31,9 +30,9 @@ header {
 }
 
 .logo {
-    width: 130px; /* Nastavte šířku loga podle potřeby */
+    width: 60px; /* Nastavte šířku loga podle potřeby */
     height: auto; /* Zachová proporce obrázku */
-    margin-right: 20px; /* Mezera mezi logem a textem */
+    margin-right: 15px; /* Mezera mezi logem a textem */
 }
 
 header h1 {
@@ -50,11 +49,6 @@ header p {
 nav {
     background: #0078d7;
     color: #fff;
-    position: sticky; /* Navigace bude viditelná při scrollování */
-    top: 0; /* Umístí navigaci na vrchol stránky při scrollování */
-    width: 100%; /* Navigace bude přes celou šířku stránky */
-    z-index: 1000; /* Zajistí, že navigace bude nad ostatními prvky */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Přidá jemný stín pod navigaci */
 }
 
 nav ul {
@@ -62,8 +56,7 @@ nav ul {
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: left;
-    padding: 10px 20px; /* Přidá vnitřní odsazení */
+    justify-content: center;
 }
 
 nav ul li {

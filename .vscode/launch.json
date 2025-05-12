@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "chrome",
+            "type": "msedge",
             "request": "launch",
             "name": "Open index.html",
             "file": "/Users/jirikaplan/Library/Mobile Documents/com~apple~CloudDocs/Kaplan a syn s.r.o./Kaplan-a-syn-s.r.o./index.html"

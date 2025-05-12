@@ -22,7 +22,17 @@ header {
     background: #0056a6;
     color: #fff;
     padding: 20px 0;
-    text-align: center;
+}
+
+.header-content {
+    display: flex;
+    align-items: center; /* Vertikální zarovnání obrázku a textu */
+}
+
+.logo {
+    width: 60px; /* Nastavte šířku loga podle potřeby */
+    height: auto; /* Zachová proporce obrázku */
+    margin-right: 15px; /* Mezera mezi logem a textem */
 }
 
 header h1 {

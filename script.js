@@ -26,3 +26,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     lazyElements.forEach(element => observer.observe(element));
 });
+

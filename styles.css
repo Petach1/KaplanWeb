@@ -47,8 +47,12 @@ header p {
 
 /* Navigace */
 nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     background: #0078d7;
     color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 nav ul {
@@ -120,6 +124,13 @@ nav ul li a:hover {
     margin-bottom: 20px;
 }
 
+.team-photo {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    margin: 20px 0;
+}
+
 /* Sekce Služby */
 .services {
     padding: 50px 20px;
@@ -164,6 +175,17 @@ nav ul li a:hover {
     color: #0056a6;
     margin-bottom: 20px;
 }
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .service-list {
+        flex-direction: column;
+    }
+}
+
 
 /* Patička */
 footer {

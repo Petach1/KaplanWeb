@@ -1,29 +1,30 @@
 // Lazy loading pro obrázky a sekce
 document.addEventListener("DOMContentLoaded", () => {
-    const lazyElements = document.querySelectorAll(".lazy-image, .lazy-section");
+    const lazyElements = document.querySelectorAll(".lazy");
 
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            console.log(entry.target); // Debug: Zobrazí sledované prvky
             if (entry.isIntersecting) {
-                const element = entry.target;
-
-                // Pro obrázky
-                if (element.classList.contains("lazy-image")) {
-                    element.src = element.dataset.src;
-                    element.classList.remove("lazy-image");
-                }
-
-                // Pro sekce
-                if (element.classList.contains("lazy-section")) {
-                    element.innerHTML = `<h2>${element.dataset.src}</h2><p>Obsah načtený lazy...</p>`;
-                    element.classList.remove("lazy-section");
-                }
-
-                observer.unobserve(element); // Přestat sledovat načtený element
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target); // Přestane sledovat prvek po načtení
             }
         });
     });
 
-    lazyElements.forEach(element => observer.observe(element));
+    lazyElements.forEach((el) => observer.observe(el));
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const nav = document.querySelector("nav");
+    const header = document.querySelector("header");
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > header.offsetHeight) {
+            nav.classList.add("scrolled");
+        } else {
+            nav.classList.remove("scrolled");
+        }
+    });
 });
 

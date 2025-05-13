@@ -19,36 +19,50 @@ body {
 
 /* Hlavička */
 header {
-    background: #0056a6;
+    background: rgb(48, 100, 220);
     color: #fff;
-    padding: 20px 0;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .header-content {
     display: flex;
-    justify-content: space-between; /* Rozdělí obsah na levou a pravou stranu */
     align-items: center; /* Vertikální zarovnání */
+    justify-content: space-between; /* Rozdělí obsah na levou a pravou stranu */
+    height: 100px; /* Nastavte výšku hlavičky podle potřeby */
 }
 
-.logo {
-    width: 60px; /* Nastavte šířku loga podle potřeby */
-    height: auto; /* Zachová proporce obrázku */
-    margin-right: 20px; /* Mezera mezi logem a ostatním obsahem */
+.header-logo {
+    width: 60px; /* Velikost loga */
+    height: auto;
+    margin-right: 10px; /* Mezera mezi logem a textem */
+    transition: all 0.5s ease; /* Přidání přechodu */
+    opacity: 1; /* Viditelné na začátku */
 }
 
-.header-content > div {
-    flex: 1; /* Zajistí, že ostatní prvky budou mít dostatek prostoru */
-    text-align: right; /* Zarovná text na pravou stranu */
+.header-content > div:first-of-type {
+    display: flex;
+    align-items: center; /* Vertikální zarovnání loga a textu */
+    gap: 10px; /* Mezera mezi logem a textem */
+}
+
+.header-text {
+    display: flex;
+    flex-direction: column; /* Text pod sebou */
+    text-align: left; /* Zarovná text vlevo */
+    justify-content: center; /* Vertikální zarovnání textu */
 }
 
 header h1 {
     margin: 0;
-    font-size: 2.5em;
+    font-size: 1.2em; /* Velikost textu */
+    line-height: 1.1; /* Vertikální zarovnání textu */
 }
 
 header p {
-    margin: 5px 0 0;
-    font-size: 1.2em;
+    margin: 0; /* Žádné mezery mezi řádky */
+    font-size: 0.9em; /* Velikost textu */
+    line-height: 1.1;
 }
 
 /* Navigace */
@@ -67,10 +81,10 @@ nav {
 
 nav ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
-    justify-content: center;
+    gap: 20px; /* Mezera mezi položkami menu */
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li {
@@ -84,13 +98,14 @@ nav ul li a {
     text-decoration: none;
     color: #fff;
     font-weight: bold;
-    padding: 10px 15px;
+    padding: 5px 10px;
     display: inline-block;
     transition: background 0.3s ease;
 }
 
 nav ul li a:hover {
     background: #0056a6;
+    border-radius: 5px;
 }
 
 /* Hero sekce */
@@ -188,10 +203,14 @@ nav ul li a:hover {
     color: #0056a6;
     margin-bottom: 20px;
 }
+.contact-info {
+    text-align: right; /* Zarovná otevírací dobu doprava */
+    font-size: 0.9em;
+    align-self: center; /* Vertikální zarovnání otevírací doby */
+}
+
 .contact-info p {
-    margin: 10px 100px;
-    font-size: 0.6rem;
-    
+    margin: 2px 0; /* Zmenšení mezer mezi řádky */
 }
 
 @media (max-width: 768px) {
@@ -204,7 +223,6 @@ nav ul li a:hover {
     }
 }
 
-
 /* Patička */
 footer {
     background: #0056a6;
@@ -212,4 +230,47 @@ footer {
     text-align: center;
     padding: 10px 0;
     margin-top: 20px;
+}
+
+/* Lazy loading - skrytí prvků před načtením */
+.lazy {
+    opacity: 0;
+    transform: translateY(20px); /* Posun dolů */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Lazy loading - zobrazení prvků */
+.lazy.visible {
+    opacity: 1;
+    transform: translateY(0); /* Návrat na původní pozici */
+}
+
+/* Skrytí loga v navigaci na začátku */
+.nav-logo {
+    display: block;
+    width: 50px; /* Velikost loga v navigaci */
+    height: auto;
+    opacity: 0; /* Skryté na začátku */
+    transition: all 0.5s ease; /* Přidání přechodu */
+}
+
+/* Logo v hlavičce */
+.header-logo {
+    width: 60px; /* Velikost loga */
+    height: auto;
+    margin-right: 10px; /* Mezera mezi logem a textem */
+    transition: all 0.5s ease; /* Přidání přechodu */
+    opacity: 1; /* Viditelné na začátku */
+}
+
+/* Zobrazení loga v navigaci při scrollování */
+nav.scrolled .nav-logo {
+    opacity: 1; /* Zobrazí logo v navigaci */
+    transform: translateY(0); /* Resetuje pozici */
+}
+
+/* Skrytí loga v hlavičce při scrollování */
+nav.scrolled + header .header-logo {
+    opacity: 0; /* Skryje logo v hlavičce */
+    transform: translateY(-20px); /* Posune logo nahoru při skrytí */
 }

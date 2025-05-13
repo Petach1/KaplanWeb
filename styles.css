@@ -26,13 +26,19 @@ header {
 
 .header-content {
     display: flex;
-    align-items: center; /* Vertikální zarovnání obrázku a textu */
+    justify-content: space-between; /* Rozdělí obsah na levou a pravou stranu */
+    align-items: center; /* Vertikální zarovnání */
 }
 
 .logo {
     width: 60px; /* Nastavte šířku loga podle potřeby */
     height: auto; /* Zachová proporce obrázku */
-    margin-right: 15px; /* Mezera mezi logem a textem */
+    margin-right: 20px; /* Mezera mezi logem a ostatním obsahem */
+}
+
+.header-content > div {
+    flex: 1; /* Zajistí, že ostatní prvky budou mít dostatek prostoru */
+    text-align: right; /* Zarovná text na pravou stranu */
 }
 
 header h1 {
@@ -47,6 +53,10 @@ header p {
 
 /* Navigace */
 nav {
+    display : flex;
+    justify-content: center;
+    background: #0078d7;
+    padding: 10px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -64,7 +74,10 @@ nav ul {
 }
 
 nav ul li {
+    display : flex;
+    justify-content: center;
     margin: 0 15px;
+    align-items: center; /* Vertikální zarovnání */
 }
 
 nav ul li a {
@@ -174,6 +187,11 @@ nav ul li a:hover {
 .contact h2 {
     color: #0056a6;
     margin-bottom: 20px;
+}
+.contact-info p {
+    margin: 10px 100px;
+    font-size: 0.6rem;
+    
 }
 
 @media (max-width: 768px) {

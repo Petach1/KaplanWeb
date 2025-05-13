@@ -21,9 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener("scroll", () => {
         if (window.scrollY > header.offsetHeight) {
-            nav.classList.add("scrolled");
+            nav.classList.add("scrolled"); // Přidá třídu scrolled
         } else {
-            nav.classList.remove("scrolled");
+            nav.classList.remove("scrolled"); // Odebere třídu scrolled
         }
     });
 });

@@ -33,10 +33,11 @@ header {
 }
 
 .header-logo {
-    width: 60px; /* Velikost loga */
-    height: auto;
+    width: 60px; /* Nastavte požadovanou šířku loga */
+    height: 50px; /* Zachová proporce obrázku */
+    max-width: 100%; /* Zabrání tomu, aby logo přesáhlo svůj kontejner */
     margin-right: 10px; /* Mezera mezi logem a textem */
-    transition: all 0.5s ease; /* Přidání přechodu */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Plynulý přechod */
     opacity: 1; /* Viditelné na začátku */
 }
 
@@ -65,18 +66,21 @@ header p {
     line-height: 1.1;
 }
 
-/* Navigace */
+/* Navigace - výchozí stav */
 nav {
-    display : flex;
-    justify-content: center;
-    background: #0078d7;
-    padding: 10px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: #0078d7;
+    background: rgb(48, 100, 220);
     color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background 0.5s ease; /* Plynulý přechod pro barvu a stín */
+}
+
+/* Navigace při scrollování */
+nav.scrolled {
+    background: #0056a6; /* Změna barvy pozadí při scrollování */
+    
 }
 
 nav ul {
@@ -100,13 +104,10 @@ nav ul li a {
     font-weight: bold;
     padding: 5px 10px;
     display: inline-block;
-    transition: background 0.3s ease;
+    transition: background 2s ease;
 }
 
-nav ul li a:hover {
-    background: #0056a6;
-    border-radius: 5px;
-}
+
 
 /* Hero sekce */
 .hero {
@@ -236,7 +237,7 @@ footer {
 .lazy {
     opacity: 0;
     transform: translateY(20px); /* Posun dolů */
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 }
 
 /* Lazy loading - zobrazení prvků */
@@ -245,13 +246,15 @@ footer {
     transform: translateY(0); /* Návrat na původní pozici */
 }
 
-/* Skrytí loga v navigaci na začátku */
+/* Logo v navigaci - výchozí stav (skryté) */
 .nav-logo {
     display: block;
-    width: 50px; /* Velikost loga v navigaci */
+    width: 40px; /* Velikost loga v navigaci */
     height: auto;
-    opacity: 0; /* Skryté na začátku */
-    transition: all 0.5s ease; /* Přidání přechodu */
+    opacity: 0; /* Neviditelné na začátku */
+    pointer-events: none; /* Zakáže interakci s logem před scrollováním */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Plynulý přechod */
+    transform: translateY(-10px); /* Posun nahoru na začátku */
 }
 
 /* Logo v hlavičce */
@@ -259,18 +262,30 @@ footer {
     width: 60px; /* Velikost loga */
     height: auto;
     margin-right: 10px; /* Mezera mezi logem a textem */
-    transition: all 0.5s ease; /* Přidání přechodu */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Plynulý přechod */
     opacity: 1; /* Viditelné na začátku */
 }
 
 /* Zobrazení loga v navigaci při scrollování */
 nav.scrolled .nav-logo {
-    opacity: 1; /* Zobrazí logo v navigaci */
+    opacity: 1; /* Viditelné logo */
+    pointer-events: auto; /* Povolení interakce s logem */
     transform: translateY(0); /* Resetuje pozici */
 }
 
 /* Skrytí loga v hlavičce při scrollování */
 nav.scrolled + header .header-logo {
     opacity: 0; /* Skryje logo v hlavičce */
+    pointer-events: none; /* Zakáže interakci s logem v hlavičce */
     transform: translateY(-20px); /* Posune logo nahoru při skrytí */
 }
+
+
+
+/* Zakázání hover efektu na skrytém logu */
+.nav-logo:not([style*="opacity: 1"]) {
+    pointer-events: none; /* Zakáže interakci, pokud logo není viditelné */
+}
+
+/* Jednoduchý hover efekt na logo v navigaci */
+

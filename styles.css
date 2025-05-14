@@ -3,7 +3,7 @@ html {
     scroll-behavior: smooth;
 }
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
@@ -19,22 +19,26 @@ body {
 
 /* Hlavička */
 header {
-    background: rgb(48, 100, 220);
+    background: #0056a6;
     color: #fff;
-    padding: 10px 0;
+    padding: 20px 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .header-content {
     display: flex;
-    align-items: center; /* Vertikální zarovnání */
+    align-items: center; /* Vertikální zarovnání loga a textu */
     justify-content: space-between; /* Rozdělí obsah na levou a pravou stranu */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
     height: 100px; /* Nastavte výšku hlavičky podle potřeby */
+    gap: 20px; /* Mezera mezi logem a textem */
 }
 
 .header-logo {
     width: 60px; /* Nastavte požadovanou šířku loga */
-    height: 50px; /* Zachová proporce obrázku */
+    height: auto; /* Zachová proporce obrázku */
     max-width: 100%; /* Zabrání tomu, aby logo přesáhlo svůj kontejner */
     margin-right: 10px; /* Mezera mezi logem a textem */
     transition: opacity 0.5s ease, transform 0.5s ease; /* Plynulý přechod */
@@ -50,34 +54,37 @@ header {
 .header-text {
     display: flex;
     flex-direction: column; /* Text pod sebou */
-    text-align: left; /* Zarovná text vlevo */
     justify-content: center; /* Vertikální zarovnání textu */
+    text-align: left; /* Zarovná text vlevo */
+    line-height: 1.2; /* Lepší mezery mezi řádky textu */
 }
 
 header h1 {
     margin: 0;
-    font-size: 1.2em; /* Velikost textu */
-    line-height: 1.1; /* Vertikální zarovnání textu */
+    font-size: 1.5em; /* Velikost textu pro nadpis */
+    line-height: 1.2; /* Vertikální zarovnání textu */
 }
 
 header p {
     margin: 0; /* Žádné mezery mezi řádky */
-    font-size: 0.9em; /* Velikost textu */
-    line-height: 1.1;
+    font-size: 1em; /* Velikost textu pro podnadpis */
+    color: #f4f4f4; /* Jemnější barva pro kontrast */
 }
 
-/* Navigace - výchozí stav */
+/* Navigace */
 nav {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgb(48, 100, 220);
+    background: #0056a6;
     color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
-    padding: 0 20px;
-    transition: background 0.5s ease, box-shadow 0.5s ease; /* Plynulý přechod pro barvu a stín */
+    justify-content: space-between;
+    padding: 10px 20px;
+    height: 70px; /* Nastavte pevnou výšku navigace */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background 0.5s ease, box-shadow 0.5s ease;
 }
 
 /* Navigace při scrollování */
@@ -86,19 +93,21 @@ nav.scrolled {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Zvýraznění stínu */
 }
 
-/* Logo v navigaci - výchozí stav (skryté) */
+/* Logo v navigaci */
 .nav-logo {
-    opacity: 0;
-    transform: translateX(-50px); /* Posun vlevo na začátku */
-    transition: opacity 0.5s ease, transform 0.5s ease; /* Plynulý přechod */
-    width: 40px; /* Velikost loga */
-    
+    width: 50px; /* Nastavte velikost loga */
+    height: auto;
+    opacity: 0; /* Skryté na začátku */
+    pointer-events: none; /* Zakáže kliknutí na logo */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: translateY(-20px); /* Posun nahoru na začátku */
 }
 
 /* Zobrazení loga v navigaci při scrollování */
 nav.scrolled .nav-logo {
     opacity: 1; /* Viditelné logo */
-    transform: translateX(0); /* Resetuje pozici */
+    pointer-events: auto; /* Povolení kliknutí */
+    transform: translateY(0); /* Reset pozice */
 }
 
 nav ul {
@@ -110,6 +119,8 @@ nav ul {
     flex-grow: 1; /* Zajistí, že položky menu zaberou dostupný prostor */
     justify-content: flex-start; /* Zarovná položky vlevo */
     transition: transform 0.5s ease; /* Plynulý přechod pro posun */
+    align-items: center; /* Vertikální zarovnání položek menu */
+    height: 100%; /* Zajistí, že položky menu nebudou zvětšovat navigaci */
 }
 
 /* Položky menu při scrollování */
@@ -131,6 +142,7 @@ nav ul li a {
     padding: 5px 10px;
     display: inline-block;
     transition: background 2s ease;
+    line-height: 1; /* Zabrání zvětšení výšky kvůli textu */
 }
 
 nav a {
@@ -225,18 +237,25 @@ nav a {
 
 .service-list {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    flex-direction: column; /* Položky v jednom sloupci */
+    gap: 40px; /* Mezera mezi položkami */
 }
 
 .service-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
     background: #fff;
     padding: 20px;
-    margin: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    flex: 1 1 calc(30% - 20px);
-    max-width: calc(30% - 20px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Plynulý přechod */
+}
+
+.service-item:hover {
+    transform: scale(1.1); /* Zvětší položku při hoveru */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Zvýrazní stín při hoveru */
 }
 
 .service-item h3 {
@@ -249,14 +268,23 @@ nav a {
     max-height: 0;
     overflow: hidden;
     opacity: 0;
-    transition: max-height 0.5s ease, opacity 0.5s ease;
+    transition: max-height 0.5s ease, opacity 0.5s ease; /* Plynulý přechod */
 }
 
-/* Styl při hoveru na libovolnou položku služby */
-.service-item:hover ~ .service-item .service-details,
+/* Zobrazení detailů pouze u položky, na kterou najedete */
 .service-item:hover .service-details {
-    max-height: 200px; /* Maximální výška při rozbalení */
-    opacity: 1;
+    max-height: 100px; /* Maximální výška při rozbalení */
+    opacity: 1; /* Zviditelnění obsahu */
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .service-list {
+        grid-template-columns: 1fr; /* Jeden sloupec na menších obrazovkách */
+    }
 }
 
 /* Sekce Kontakt */
@@ -278,16 +306,6 @@ nav a {
 
 .contact-info p {
     margin: 2px 0; /* Zmenšení mezer mezi řádky */
-}
-
-@media (max-width: 768px) {
-    .header-content {
-        flex-direction: column;
-        text-align: center;
-    }
-    .service-list {
-        flex-direction: column;
-    }
 }
 
 /* Patička */
@@ -314,13 +332,17 @@ footer {
 
 /* Logo v navigaci - výchozí stav (skryté) */
 .nav-logo {
-    display: block;
-    width: 40px; /* Velikost loga v navigaci */
-    height: auto;
     opacity: 0; /* Neviditelné na začátku */
     pointer-events: none; /* Zakáže interakci s logem před scrollováním */
     transition: opacity 0.5s ease, transform 0.5s ease; /* Plynulý přechod */
     transform: translateY(-20px); /* Posun nahoru na začátku */
+}
+
+/* Zobrazení loga v navigaci při scrollování */
+nav.scrolled .nav-logo {
+    opacity: 1; /* Viditelné logo */
+    pointer-events: auto; /* Povolení interakce s logem */
+    transform: translateY(0); /* Resetuje pozici */
 }
 
 /* Logo v hlavičce */
@@ -332,21 +354,12 @@ footer {
     opacity: 1; /* Viditelné na začátku */
 }
 
-/* Zobrazení loga v navigaci při scrollování */
-nav.scrolled .nav-logo {
-    opacity: 1; /* Viditelné logo */
-    pointer-events: auto; /* Povolení interakce s logem */
-    transform: translateY(0); /* Resetuje pozici */
-}
-
 /* Skrytí loga v hlavičce při scrollování */
 nav.scrolled + header .header-logo {
     opacity: 0; /* Skryje logo v hlavičce */
     pointer-events: none; /* Zakáže interakci s logem v hlavičce */
     transform: translateY(-20px); /* Posune logo nahoru při skrytí */
 }
-
-
 
 /* Zakázání hover efektu na skrytém logu */
 .nav-logo:not([style*="opacity: 1"]) {
@@ -357,4 +370,30 @@ nav.scrolled + header .header-logo {
 .nav-logo {
     pointer-events: auto; /* Povolení interakce s logem */
     cursor: pointer; /* Změna kurzoru na ukazatel */
+}
+
+/* Lazy loading - výchozí stav (skryté sekce) */
+.lazy {
+    opacity: 0; /* Sekce je neviditelná */
+    transform: translateY(50px); /* Posun dolů */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Plynulý přechod */
+}
+
+/* Lazy loading - zobrazení sekcí */
+.lazy.visible {
+    opacity: 1; /* Sekce se stane viditelnou */
+    transform: translateY(0); /* Návrat na původní pozici */
+}
+
+/* Lazy loading - výchozí stav (skryté sekce) */
+section {
+    opacity: 0;
+    transform: translateY(50px); /* Posun dolů */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+/* Zobrazení sekcí při scrollování */
+section:is(:hover, :focus-visible, :target) {
+    opacity: 1;
+    transform: translateY(0); /* Resetuje pozici */
 }

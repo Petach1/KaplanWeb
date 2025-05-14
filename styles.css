@@ -74,13 +74,31 @@ nav {
     background: rgb(48, 100, 220);
     color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: background 0.5s ease; /* Plynulý přechod pro barvu a stín */
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    transition: background 0.5s ease, box-shadow 0.5s ease; /* Plynulý přechod pro barvu a stín */
 }
 
 /* Navigace při scrollování */
 nav.scrolled {
     background: #0056a6; /* Změna barvy pozadí při scrollování */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Zvýraznění stínu */
+}
+
+/* Logo v navigaci - výchozí stav (skryté) */
+.nav-logo {
+    opacity: 0;
+    transform: translateX(-50px); /* Posun vlevo na začátku */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Plynulý přechod */
+    width: 40px; /* Velikost loga */
     
+}
+
+/* Zobrazení loga v navigaci při scrollování */
+nav.scrolled .nav-logo {
+    opacity: 1; /* Viditelné logo */
+    transform: translateX(0); /* Resetuje pozici */
 }
 
 nav ul {
@@ -89,13 +107,21 @@ nav ul {
     gap: 20px; /* Mezera mezi položkami menu */
     margin: 0;
     padding: 0;
+    flex-grow: 1; /* Zajistí, že položky menu zaberou dostupný prostor */
+    justify-content: flex-start; /* Zarovná položky vlevo */
+    transition: transform 0.5s ease; /* Plynulý přechod pro posun */
 }
 
+/* Položky menu při scrollování */
+nav.scrolled ul {
+    transform: translateX(50px); /* Posun doprava */
+}
+
+/* Položky menu - vždy viditelné */
 nav ul li {
-    display : flex;
-    justify-content: center;
-    margin: 0 15px;
-    align-items: center; /* Vertikální zarovnání */
+    opacity: 1; /* Položky jsou vždy viditelné */
+    transform: translateX(0); /* Žádný posun na začátku */
+    transition: none; /* Žádný přechod na začátku */
 }
 
 nav ul li a {
@@ -107,7 +133,11 @@ nav ul li a {
     transition: background 2s ease;
 }
 
-
+nav a {
+    text-decoration: none; /* Odstraní podtržení odkazu */
+    display: flex; /* Zajistí správné zarovnání loga */
+    align-items: center;
+}
 
 /* Hero sekce */
 .hero {
@@ -144,20 +174,41 @@ nav ul li a {
 /* Sekce O nás */
 .about {
     padding: 50px 20px;
-    background: #fff;
+    background: #f9f9f9; /* Jemné pozadí pro lepší kontrast */
     text-align: center;
+    display: flex;
+    flex-wrap: wrap; /* Zajistí přizpůsobení na menších obrazovkách */
+    align-items: center; /* Vertikální zarovnání obsahu */
+    gap: 20px; /* Mezera mezi obrázkem a textem */
 }
 
 .about h2 {
     color: #0056a6;
     margin-bottom: 20px;
+    flex-basis: 100%; /* Nadpis zabere celou šířku */
+    text-align: center;
 }
 
-.team-photo {
+.about-image {
     width: 100%;
-    max-width: 600px;
+    max-width: 500px; /* Maximální šířka obrázku */
     height: auto;
-    margin: 20px 0;
+    border-radius: 10px; /* Zaoblené rohy pro jemnější vzhled */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Jemný stín */
+    object-fit: cover; /* Zajistí správné měřítko obrázku */
+    flex: 1 1 40%; /* Obrázek zabere 40 % šířky */
+}
+
+.about-text {
+    flex: 1 1 50%; /* Text zabere 50 % šířky */
+    text-align: left; /* Zarovná text vlevo */
+    font-size: 1.1em; /* Mírně větší text pro lepší čitelnost */
+    line-height: 1.6; /* Lepší mezery mezi řádky */
+    color: #333; /* Tmavší barva pro lepší kontrast */
+}
+
+.about-text strong {
+    color: #0056a6; /* Zvýraznění klíčových informací */
 }
 
 /* Sekce Služby */
@@ -191,6 +242,21 @@ nav ul li a {
 .service-item h3 {
     color: #0056a6;
     margin-bottom: 10px;
+}
+
+/* Výchozí styl pro skrytý obsah */
+.service-details {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+/* Styl při hoveru na libovolnou položku služby */
+.service-item:hover ~ .service-item .service-details,
+.service-item:hover .service-details {
+    max-height: 200px; /* Maximální výška při rozbalení */
+    opacity: 1;
 }
 
 /* Sekce Kontakt */
@@ -253,8 +319,8 @@ footer {
     height: auto;
     opacity: 0; /* Neviditelné na začátku */
     pointer-events: none; /* Zakáže interakci s logem před scrollováním */
-    transition: opacity 0.3s ease, transform 0.3s ease; /* Plynulý přechod */
-    transform: translateY(-10px); /* Posun nahoru na začátku */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Plynulý přechod */
+    transform: translateY(-20px); /* Posun nahoru na začátku */
 }
 
 /* Logo v hlavičce */
@@ -288,4 +354,7 @@ nav.scrolled + header .header-logo {
 }
 
 /* Jednoduchý hover efekt na logo v navigaci */
-
+.nav-logo {
+    pointer-events: auto; /* Povolení interakce s logem */
+    cursor: pointer; /* Změna kurzoru na ukazatel */
+}

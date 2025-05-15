@@ -103,3 +103,54 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const footer = document.querySelector("footer p");
+    const currentYear = new Date().getFullYear();
+    footer.innerHTML = `&copy; ${currentYear} Kaplan a syn s.r.o. Všechna práva vyhrazena.`;
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const carouselImages = document.querySelector(".carousel-images");
+    const images = document.querySelectorAll(".carousel-images img");
+    const imageCount = images.length;
+
+    // Duplikace prvního a posledního obrázku pro nekonečné posouvání
+    const firstClone = images[0].cloneNode(true);
+    const lastClone = images[imageCount - 1].cloneNode(true);
+
+    firstClone.id = "first-clone";
+    lastClone.id = "last-clone";
+
+    carouselImages.appendChild(firstClone);
+    carouselImages.insertBefore(lastClone, images[0]);
+
+    const allImages = document.querySelectorAll(".carousel-images img");
+    let currentIndex = 1; // Začínáme na prvním skutečném obrázku
+    const imageWidth = 100; // Šířka obrázku v procentech
+    const transitionTime = 1000; // Doba přechodu (v ms)
+    const intervalTime = 4000; // Interval mezi posuny (v ms)
+
+    // Nastavení výchozí pozice
+    carouselImages.style.transform = `translateX(-${currentIndex * imageWidth}%)`;
+
+    // Automatické posouvání
+    const startCarousel = () => {
+        setInterval(() => {
+            currentIndex++;
+            carouselImages.style.transition = `transform ${transitionTime}ms ease-in-out`;
+            carouselImages.style.transform = `translateX(-${currentIndex * imageWidth}%)`;
+
+            // Reset pozice na první obrázek (bez přechodu)
+            setTimeout(() => {
+                if (currentIndex === allImages.length - 1) {
+                    carouselImages.style.transition = "none";
+                    currentIndex = 1;
+                    carouselImages.style.transform = `translateX(-${currentIndex * imageWidth}%)`;
+                }
+            }, transitionTime);
+        }, intervalTime);
+    };
+
+    startCarousel();
+});
+

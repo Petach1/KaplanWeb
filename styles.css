@@ -187,7 +187,6 @@ nav a {
 .about {
     padding: 50px 20px;
     background: #f9f9f9; /* Jemné pozadí pro lepší kontrast */
-    text-align: center;
     display: flex;
     flex-wrap: wrap; /* Zajistí přizpůsobení na menších obrazovkách */
     align-items: center; /* Vertikální zarovnání obsahu */
@@ -201,26 +200,40 @@ nav a {
     text-align: center;
 }
 
-.about-image {
-    width: 100%;
-    max-width: 500px; /* Maximální šířka obrázku */
-    height: auto;
-    border-radius: 10px; /* Zaoblené rohy pro jemnější vzhled */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Jemný stín */
-    object-fit: cover; /* Zajistí správné měřítko obrázku */
-    flex: 1 1 40%; /* Obrázek zabere 40 % šířky */
-}
-
 .about-text {
     flex: 1 1 50%; /* Text zabere 50 % šířky */
-    text-align: left; /* Zarovná text vlevo */
+    text-align: justify; /* Zarovná text do bloku pro lepší čitelnost */
     font-size: 1.1em; /* Mírně větší text pro lepší čitelnost */
-    line-height: 1.6; /* Lepší mezery mezi řádky */
+    line-height: 1.8; /* Lepší mezery mezi řádky */
     color: #333; /* Tmavší barva pro lepší kontrast */
 }
 
 .about-text strong {
     color: #0056a6; /* Zvýraznění klíčových informací */
+}
+
+.carousel {
+    flex: 1 1 40%; /* Carousel zabere 40 % šířky */
+    position: relative;
+    overflow: hidden; /* Skryje obrázky mimo viditelnou oblast */
+    width: 100%;
+    max-width: 500px; /* Maximální šířka carouselu */
+    margin: 0 auto; /* Zarovná carousel na střed */
+    border-radius: 10px; /* Zaoblené rohy */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Jemný stín */
+}
+
+.carousel-images {
+    display: flex;
+    transition: transform 1s ease-in-out; /* Plynulý přechod mezi obrázky */
+    width: 100%;
+}
+
+.carousel-images img {
+    width: 100%; /* Obrázek zabere celou šířku carouselu */
+    flex-shrink: 0; /* Zabrání zmenšení obrázku */
+    object-fit: cover; /* Zachová proporce obrázku */
+    border-radius: 10px; /* Zaoblené rohy */
 }
 
 /* Sekce Služby */
@@ -232,35 +245,154 @@ nav a {
 
 .services h2 {
     color: #0056a6;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
+/* Kategorie služeb */
+.service-category {
+    margin-bottom: 40px;
+}
+
+.service-category h3 {
+    color: #0056a6;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    text-align: left;
+    border-bottom: 2px solid #0056a6;
+    padding-bottom: 5px;
+}
+
+/* Karty služeb */
 .service-list {
     display: flex;
-    flex-direction: column; /* Položky v jednom sloupci */
-    gap: 40px; /* Mezera mezi položkami */
+    flex-wrap: wrap; /* Zajistí přizpůsobení na menších obrazovkách */
+    gap: 20px; /* Mezera mezi kartami */
+    justify-content: center; /* Zarovná karty doprostřed */
 }
 
 .service-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
     background: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Plynulý přechod */
+    flex: 1 1 calc(33.333% - 20px); /* Tři sloupce na větších obrazovkách */
+    max-width: 300px; /* Maximální šířka karty */
+    text-align: center; /* Zarovná text na střed */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .service-item:hover {
-    transform: scale(1.1); /* Zvětší položku při hoveru */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Zvýrazní stín při hoveru */
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.service-item h3 {
+.service-item h4 {
     color: #0056a6;
     margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.service-item p {
+    margin: 5px 0;
+    line-height: 1.6;
+    font-size: 1em;
+}
+
+/* Prodejna */
+.service-item.prodejna {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.service-item.prodejna .service-text {
+    flex: 1 1 50%;
+    text-align: left;
+}
+
+.service-item.prodejna .map-container {
+    flex: 1 1 100%;
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.service-item.prodejna .map-container iframe {
+    width: 100%;
+    height: 250px;
+    border: 0;
+    display: block;
+}
+
+/* Prodejna - styl obrázku */
+.service-item.prodejna .service-image {
+    flex: 1 1 40%; /* Obrázek zabere 40 % šířky */
+    max-width: 300px; /* Maximální šířka obrázku */
+    margin: 0 auto; /* Zarovná obrázek na střed */
+    text-align: center;
+}
+
+.service-item.prodejna .service-image img {
+    width: 100%; /* Obrázek zabere celou šířku svého kontejneru */
+    height: auto; /* Zachová proporce obrázku */
+    border-radius: 10px; /* Zaoblené rohy pro jemnější vzhled */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Jemný stín */
+    object-fit: cover; /* Zajistí správné měřítko obrázku */
+}
+
+/* Responzivita */
+@media (max-width: 768px) {
+    .service-list {
+        flex-direction: column;
+    }
+
+    .service-item {
+        flex: 1 1 100%;
+    }
+
+    .service-item.prodejna {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .service-item.prodejna .service-text {
+        text-align: center;
+    }
+}
+
+.map-container {
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 250px;
+    border: 0;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .service-item {
+        flex-direction: column; /* Na menších obrazovkách zobrazí text a obrázek pod sebou */
+        text-align: center;
+    }
+
+    .service-item:nth-child(even) {
+        flex-direction: column; /* Zruší obrácené pořadí na menších obrazovkách */
+    }
+
+    .service-image {
+        max-width: 100%; /* Obrázek zabere celou šířku */
+    }
+
+    .service-text {
+        text-align: center; /* Zarovná text na střed */
+    }
 }
 
 /* Výchozí styl pro skrytý obsah */
@@ -275,6 +407,16 @@ nav a {
 .service-item:hover .service-details {
     max-height: 100px; /* Maximální výška při rozbalení */
     opacity: 1; /* Zviditelnění obsahu */
+}
+
+/* Obrázky v sekci services */
+.service-image img {
+    width: 100%; /* Obrázek zabere celou šířku svého kontejneru */
+    max-width: 300px; /* Maximální šířka obrázku */
+    height: auto; /* Zachová proporce obrázku */
+    border-radius: 10px; /* Zaoblené rohy pro jemnější vzhled */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Jemný stín */
+    object-fit: cover; /* Zajistí správné měřítko obrázku */
 }
 
 @media (max-width: 768px) {
@@ -299,13 +441,28 @@ nav a {
     margin-bottom: 20px;
 }
 .contact-info {
-    text-align: right; /* Zarovná otevírací dobu doprava */
+    text-align: right; /* Zarovná kontaktní informace doprava */
     font-size: 0.9em;
-    align-self: center; /* Vertikální zarovnání otevírací doby */
+    align-self: center; /* Vertikální zarovnání kontaktních informací */
+    color: #f4f4f4; /* Světlejší barva pro kontrast s pozadím */
 }
 
 .contact-info p {
     margin: 2px 0; /* Zmenšení mezer mezi řádky */
+}
+
+/* Styl pro otevírací dobu */
+.opening-hours {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    font-size: 1em;
+    color: #333;
+}
+
+.opening-hours li {
+    margin: 5px 0;
+    line-height: 1.5;
 }
 
 /* Patička */
@@ -396,4 +553,253 @@ section {
 section:is(:hover, :focus-visible, :target) {
     opacity: 1;
     transform: translateY(0); /* Resetuje pozici */
+}
+
+/* Styl pro mapu */
+.map-container {
+    margin-top: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    max-width: 100%;
+}
+.map-container iframe {
+    width: 100%;
+    height: 250px;
+    border: 0;
+    display: block;
+}
+
+/* Styl pro sekci Prodejna */
+.service-item.prodejna {
+    display: flex;
+    flex-wrap: wrap; /* Zajistí přizpůsobení na menších obrazovkách */
+    align-items: flex-start; /* Zarovná obsah nahoře */
+    gap: 20px; /* Mezera mezi prvky */
+}
+
+.service-item.prodejna .service-text {
+    flex: 1 1 50%; /* Text zabere 50 % šířky */
+    text-align: left; /* Zarovná text vlevo */
+}
+
+.service-item.prodejna .service-image {
+    flex: 1 1 40%; /* Obrázek zabere 40 % šířky */
+    max-width: 300px; /* Maximální šířka obrázku */
+}
+
+.service-item.prodejna .map-container {
+    flex: 1 1 100%; /* Mapa zabere celou šířku */
+    margin-top: 20px; /* Mezera nad mapou */
+    border-radius: 10px; /* Zaoblené rohy */
+    overflow: hidden; /* Skryje přesahující části */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Jemný stín */
+}
+
+.service-item.prodejna .map-container iframe {
+    width: 100%; /* Mapa zabere celou šířku kontejneru */
+    height: 250px; /* Výška mapy */
+    border: 0; /* Odstraní rámeček */
+    display: block; /* Zajistí správné zobrazení */
+}
+
+/* Responzivita pro menší obrazovky */
+@media (max-width: 768px) {
+    .service-item.prodejna {
+        flex-direction: column; /* Text, obrázek a mapa pod sebou */
+        align-items: center; /* Zarovná obsah na střed */
+    }
+
+    .service-item.prodejna .service-text {
+        text-align: center; /* Zarovná text na střed */
+    }
+
+    .service-item.prodejna .service-image {
+        max-width: 100%; /* Obrázek zabere celou šířku */
+    }
+
+    .service-item.prodejna .map-container {
+        margin-top: 20px; /* Mezera nad mapou */
+    }
+}
+
+/* Karty služeb */
+.service-item {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.service-item h3 {
+    color: #0056a6;
+    margin-bottom: 10px;
+}
+
+.service-item p {
+    margin: 5px 0;
+    line-height: 1.6;
+}
+
+.service-item .toggle-details {
+    background: #0078d7;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.service-item .toggle-details:hover {
+    background: #0056a6;
+}
+
+/* Skryté detaily služby */
+.service-details {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+    margin-top: 10px;
+}
+
+.service-item.active .service-details {
+    max-height: 200px; /* Maximální výška detailů */
+    opacity: 1;
+}
+
+/* Zarovnání podkategorií pouze v Montérských službách */
+.service-category:first-of-type .service-list {
+    display: flex;
+    flex-wrap: wrap; /* Zajistí přizpůsobení na menších obrazovkách */
+    gap: 20px; /* Mezera mezi kartami */
+    justify-content: center; /* Zarovná karty doprostřed */
+}
+
+.service-category:first-of-type .service-item {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(33.333% - 20px); /* Tři sloupce na větších obrazovkách */
+    max-width: 300px; /* Maximální šířka karty */
+    text-align: center; /* Zarovná text na střed */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-category:first-of-type .service-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.service-category:first-of-type .service-item h4 {
+    color: #0056a6;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.service-category:first-of-type .service-item p {
+    margin: 5px 0;
+    line-height: 1.6;
+    font-size: 1em;
+}
+
+/* Responzivita pro Montérské služby */
+@media (max-width: 768px) {
+    .service-category:first-of-type .service-item {
+        flex: 1 1 100%; /* Jeden sloupec na menších obrazovkách */
+    }
+}
+
+/* Čištění odpadů - roztažení na šířku */
+.service-category:nth-of-type(2) .service-list {
+    display: block; /* Zajistí, že obsah bude roztažený na šířku */
+}
+
+.service-category:nth-of-type(2) .service-item {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Zarovná text vlevo */
+    max-width: none; /* Zruší maximální šířku */
+    margin: 0 auto; /* Zarovná obsah na střed */
+}
+
+/* Prodejna - roztažení na šířku */
+.service-category:nth-of-type(3) .service-item {
+    display: flex;
+    flex-wrap: wrap; /* Zajistí přizpůsobení na menších obrazovkách */
+    gap: 20px; /* Mezera mezi prvky */
+    align-items: flex-start; /* Zarovná obsah nahoře */
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Zarovná text vlevo */
+    max-width: none; /* Zruší maximální šířku */
+    margin: 0 auto; /* Zarovná obsah na střed */
+}
+
+.service-category:nth-of-type(3) .service-text {
+    flex: 1 1 50%; /* Text zabere 50 % šířky */
+}
+
+.service-category:nth-of-type(3) .map-container {
+    flex: 1 1 50%; /* Mapa zabere 50 % šířky */
+    margin-top: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Čištění odpadů - zarovnání textu a názvu na střed */
+.service-category:nth-of-type(2) {
+    text-align: center; /* Zarovná text a nadpis na střed */
+}
+
+.service-category:nth-of-type(2) .service-item {
+    text-align: center; /* Zarovná text uvnitř karty na střed */
+    margin: 0 auto; /* Zarovná kartu na střed */
+}
+
+/* Prodejna - zarovnání textu a názvu na střed */
+.service-category:nth-of-type(3) {
+    text-align: center; /* Zarovná text a nadpis na střed */
+}
+
+.service-category:nth-of-type(3) .service-text {
+    text-align: center; /* Zarovná text uvnitř prodejny na střed */
+    margin: 0 auto; /* Zarovná obsah na střed */
+}
+
+.service-category:nth-of-type(3) .map-container {
+    margin: 20px auto; /* Zarovná mapu na střed */
+}
+
+/* Carousel - základní styl */
+.carousel {
+    position: relative;
+    overflow: hidden; /* Skryje obrázky mimo viditelnou oblast */
+    width: 100%;
+    max-width: 500px; /* Maximální šířka carouselu */
+    margin: 20px auto; /* Zarovná carousel na střed */
+    border-radius: 10px; /* Zaoblené rohy */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Jemný stín */
+}
+
+.carousel-images {
+    display: flex;
+    transition: transform 1s ease-in-out; /* Plynulý přechod mezi obrázky */
+    width: 100%;
+}
+
+.carousel-images img {
+    width: 100%; /* Obrázek zabere celou šířku carouselu */
+    flex-shrink: 0; /* Zabrání zmenšení obrázku */
+    object-fit: cover; /* Zachová proporce obrázku */
+    border-radius: 10px; /* Zaoblené rohy */
 }

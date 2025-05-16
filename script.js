@@ -1,16 +1,13 @@
-// Lazy loading pro obrázky a sekce
 document.addEventListener("DOMContentLoaded", () => {
     const lazyElements = document.querySelectorAll(".lazy");
-
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("visible");
-                observer.unobserve(entry.target); // Přestane sledovat prvek po načtení
+                observer.unobserve(entry.target);
             }
         });
     });
-
     lazyElements.forEach((el) => observer.observe(el));
 });
 
@@ -154,3 +151,27 @@ document.addEventListener("DOMContentLoaded", () => {
     startCarousel();
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const cleaningToggle = document.querySelector('.cleaning-toggle');
+    if (cleaningToggle) {
+        const header = cleaningToggle.querySelector('.cleaning-header');
+        const details = cleaningToggle.querySelector('.cleaning-details');
+        const arrow = cleaningToggle.querySelector('.arrow');
+        header.addEventListener('click', () => {
+            const isOpen = details.style.display === 'block';
+            details.style.display = isOpen ? 'none' : 'block';
+            arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(90deg)';
+        });
+    }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.show-details-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const details = this.closest('.service-item').querySelector('.cleaning-details');
+            const isVisible = details.style.display === 'block';
+            details.style.display = isVisible ? 'none' : 'block';
+            this.textContent = isVisible ? 'Více informací' : 'Méně informací';
+        });
+    });
+});

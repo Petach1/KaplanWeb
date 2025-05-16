@@ -287,6 +287,7 @@ nav a {
     flex-wrap: wrap; /* Zajistí přizpůsobení na menších obrazovkách */
     gap: 20px; /* Mezera mezi kartami */
     justify-content: center; /* Zarovná karty doprostřed */
+    align-items: flex-start; /* Oprava: každá karta má výšku podle obsahu */
 }
 
 .service-item {
@@ -686,13 +687,13 @@ nav.scrolled + header .header-logo {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.service-category:first-of-type .service-item h4 {
+.service-category:first-of_type .service-item h4 {
     color: #0056a6;
     margin-bottom: 10px;
     font-size: 1.2em;
 }
 
-.service-category:first-of-type .service-item p {
+.service-category:first-of_type .service-item p {
     margin: 5px 0;
     line-height: 1.6;
     font-size: 1em;

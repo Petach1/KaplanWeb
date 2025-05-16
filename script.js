@@ -167,11 +167,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('.show-details-btn').forEach(btn => {
-        btn.addEventListener('click', function () {
-            const details = this.closest('.service-item').querySelector('.cleaning-details');
-            const isVisible = details.style.display === 'block';
-            details.style.display = isVisible ? 'none' : 'block';
-            this.textContent = isVisible ? 'Více informací' : 'Méně informací';
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            // Najdi rodičovský .service-item
+            const serviceItem = btn.closest('.service-item');
+            // Najdi detail v rámci tohoto service-itemu
+            const details = serviceItem.querySelector('.cleaning-details');
+            // Zavři všechny ostatní otevřené detaily
+            document.querySelectorAll('.cleaning-details').forEach(d => {
+                if (d !== details) d.style.display = 'none';
+            });
+            // Přepni zobrazení detailu
+            if (details.style.display === 'none' || details.style.display === '') {
+                details.style.display = 'block';
+            } else {
+                details.style.display = 'none';
+            }
         });
     });
 });

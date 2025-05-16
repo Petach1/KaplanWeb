@@ -206,10 +206,29 @@ nav a {
     font-size: 1.1em; /* Mírně větší text pro lepší čitelnost */
     line-height: 1.8; /* Lepší mezery mezi řádky */
     color: #333; /* Tmavší barva pro lepší kontrast */
+    padding: 0 40px; /* Přidá větší mezeru zleva a zprava */
+    box-sizing: border-box;
+    margin: 0 auto;   /* Zarovná blok více ke středu */
+    max-width: 600px; /* Omezí maximální šířku textu pro lepší čitelnost */
 }
 
 .about-text strong {
     color: #0056a6; /* Zvýraznění klíčových informací */
+}
+
+.about-text ul {
+    margin: 0.5em 0 0.5em 0.5em;
+    padding: 0;
+    list-style: disc;
+    color: #0056a6;
+    font-weight: bold;
+    font-size: 1.05em;
+}
+.about-text ul li {
+    margin-bottom: 0.5em;
+}
+.about-text p {
+    margin-bottom: 1em;
 }
 
 .carousel {
@@ -542,18 +561,7 @@ nav.scrolled + header .header-logo {
     transform: translateY(0); /* Návrat na původní pozici */
 }
 
-/* Lazy loading - výchozí stav (skryté sekce) */
-section {
-    opacity: 0;
-    transform: translateY(50px); /* Posun dolů */
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
 
-/* Zobrazení sekcí při scrollování */
-section:is(:hover, :focus-visible, :target) {
-    opacity: 1;
-    transform: translateY(0); /* Resetuje pozici */
-}
 
 /* Styl pro mapu */
 .map-container {
@@ -643,32 +651,15 @@ section:is(:hover, :focus-visible, :target) {
     line-height: 1.6;
 }
 
-.service-item .toggle-details {
-    background: #0078d7;
-    color: #fff;
+/* Tlačítko pro zobrazení detailů */
+.show-details-btn {
+    background: none;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    color: #0056a6;
+    text-decoration: underline;
     cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.service-item .toggle-details:hover {
-    background: #0056a6;
-}
-
-/* Skryté detaily služby */
-.service-details {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.5s ease, opacity 0.5s ease;
-    margin-top: 10px;
-}
-
-.service-item.active .service-details {
-    max-height: 200px; /* Maximální výška detailů */
-    opacity: 1;
+    font-size: 1em;
+    margin-left: 5px;
 }
 
 /* Zarovnání podkategorií pouze v Montérských službách */

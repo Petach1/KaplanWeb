@@ -795,3 +795,51 @@ nav.scrolled + header .header-logo {
     object-fit: cover; /* Zachová proporce obrázku */
     border-radius: 10px; /* Zaoblené rohy */
 }
+
+/* Styl pro rozbalovací detaily služeb */
+.cleaning-details {
+    display: none;
+    text-align: left;
+    margin-top: 10px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.5s cubic-bezier(0.4,0,0.2,1), padding 0.5s;
+    padding: 0 0;
+}
+.cleaning-details.open {
+    display: block;
+    max-height: 500px;
+    opacity: 1;
+    padding: 10px 0;
+}
+
+/* Kontaktní osoby - nově přidaný styl */
+.contacts-persons {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;      /* Změna z flex-start na center */
+    justify-content: center;  /* Přidáno pro lepší centrování */
+    margin: 1.5em 0 1em 0;
+}
+.contacts-persons > div {
+    background: #f4f4f4;
+    border-left: 4px solid #0056a6;
+    padding: 12px 18px;
+    border-radius: 5px;
+    font-size: 1em;
+    min-width: 220px;
+    text-align: center;       /* Přidáno pro centrování textu uvnitř boxu */
+}
+@media (min-width: 700px) {
+    .contacts-persons {
+        flex-direction: row;
+        gap: 2em;
+        align-items: stretch;
+        justify-content: center; /* Přidáno pro centrování i na větších obrazovkách */
+    }
+    .contacts-persons > div {
+        min-width: 220px;
+    }
+}

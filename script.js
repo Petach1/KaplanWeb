@@ -175,13 +175,18 @@ document.addEventListener("DOMContentLoaded", () => {
             const details = serviceItem.querySelector('.cleaning-details');
             // Zavři všechny ostatní otevřené detaily
             document.querySelectorAll('.cleaning-details').forEach(d => {
-                if (d !== details) d.style.display = 'none';
+                if (d !== details) {
+                    d.classList.remove('open');
+                    setTimeout(() => { d.style.display = 'none'; }, 500);
+                }
             });
-            // Přepni zobrazení detailu
-            if (details.style.display === 'none' || details.style.display === '') {
+            // Přepni zobrazení detailu s animací
+            if (!details.classList.contains('open')) {
                 details.style.display = 'block';
+                setTimeout(() => { details.classList.add('open'); }, 10);
             } else {
-                details.style.display = 'none';
+                details.classList.remove('open');
+                setTimeout(() => { details.style.display = 'none'; }, 500);
             }
         });
     });

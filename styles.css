@@ -843,3 +843,168 @@ nav.scrolled + header .header-logo {
         min-width: 220px;
     }
 }
+
+/* --- KATALOG PRODUKTŮ --- */
+.catalog-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin: 40px 0;
+    width: 100%;
+}
+
+.catalog-row {
+    display: flex;
+    align-items: stretch;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    overflow: hidden;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    min-height: 240px;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.catalog-row:hover {
+    box-shadow: 0 8px 32px rgba(0,86,166,0.18);
+    transform: scale(1.01);
+}
+
+.catalog-row-img {
+    flex: 0 0 340px;
+    background: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.catalog-row-img img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 16px 0 0 16px;
+}
+
+.catalog-row-info {
+    flex: 1 1 0;
+    padding: 32px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.catalog-row-info h4 {
+    margin: 0 0 12px 0;
+    color: #0056a6;
+    font-size: 1.5em;
+}
+
+.catalog-row-info p {
+    margin: 0 0 18px 0;
+    font-size: 1.15em;
+    color: #333;
+}
+
+.catalog-row-meta {
+    margin-top: auto;
+    font-size: 1.1em;
+    color: #0056a6;
+}
+
+.catalog-row-price strong {
+    color: #0078d7;
+    font-size: 1.15em;
+}
+
+@media (max-width: 900px) {
+    .catalog-row {
+        flex-direction: column;
+        min-height: unset;
+    }
+    .catalog-row-img, .catalog-row-img img {
+        border-radius: 16px 16px 0 0;
+        height: 200px;
+        max-width: 100%;
+    }
+    .catalog-row-info {
+        padding: 24px 16px;
+    }
+}
+
+/* Katalog značek */
+.brands-catalog {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.brand-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(0,86,166,0.08);
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 18px 20px 18px;
+    text-align: center;
+    transition: box-shadow 0.3s, transform 0.3s;
+    min-height: 370px; /* Nově přidaná minimální výška */
+}
+
+.brand-card:hover {
+    box-shadow: 0 8px 32px rgba(0,86,166,0.18);
+    transform: scale(1.03);
+}
+
+.brand-card img {
+    width: 180px;
+    height: 140px;
+    object-fit: contain;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    background: #fff;
+    box-shadow: 0 1px 6px rgba(0,86,166,0.07);
+    border: 1px solid #e0e0e0;
+    padding: 12px;
+    display: block;
+}
+
+.brand-info h4 {
+    margin: 0 0 10px 0;
+    color: #0056a6;
+    font-size: 1.2em;
+}
+
+.brand-info p {
+    margin: 0 0 10px 0;
+    font-size: 1em;
+    color: #333;
+}
+
+.brand-info ul {
+    list-style: disc;
+    margin: 0 0 0 1.2em;
+    padding: 0;
+    color: #0056a6;
+    font-size: 0.98em;
+    text-align: left;
+}
+
+.brand-card.highlight {
+    outline: 3px solid #0078d7;
+    box-shadow: 0 0 0 6px #e3f0fc;
+    z-index: 2;
+    position: relative;
+    animation: highlightBrand 1s;
+}
+@keyframes highlightBrand {
+    0% { outline-color: #fff; box-shadow: 0 0 0 0 #fff; }
+    100% { outline-color: #0078d7; box-shadow: 0 0 0 6px #e3f0fc; }
+}
+
+

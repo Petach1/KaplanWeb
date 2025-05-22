@@ -192,3 +192,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+    const hamburger = document.querySelector('.hamburger');
+    const navUl = document.querySelector('nav ul');
+    hamburger.addEventListener('click', function() {
+        navUl.classList.toggle('open');
+        hamburger.classList.toggle('active');
+    });
+    // Zavři menu po kliknutí na odkaz (na mobilu)
+    navUl.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navUl.classList.remove('open');
+            hamburger.classList.remove('active');
+        });
+    });
+});
+

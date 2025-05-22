@@ -693,7 +693,7 @@ nav.scrolled + header .header-logo {
     font-size: 1.2em;
 }
 
-.service-category:first-of_type .service-item p {
+.service-category:first_of_type .service-item p {
     margin: 5px 0;
     line-height: 1.6;
     font-size: 1em;
@@ -972,6 +972,11 @@ nav.scrolled + header .header-logo {
     border: 1px solid #e0e0e0;
     padding: 12px;
     display: block;
+    transition: transform 0.4s cubic-bezier(.4,0,.2,1), box-shadow 0.4s;
+}
+.brand-card:hover img {
+    transform: scale(1.08) rotate(-1deg);
+    box-shadow: 0 8px 24px rgba(0,86,166,0.12);
 }
 
 .brand-info h4 {
@@ -1006,5 +1011,164 @@ nav.scrolled + header .header-logo {
     0% { outline-color: #fff; box-shadow: 0 0 0 0 #fff; }
     100% { outline-color: #0078d7; box-shadow: 0 0 0 6px #e3f0fc; }
 }
+.wave-bg {
+    width: 100%;
+    height: 120px;
+    background: url('data:image/svg+xml;utf8,<svg width="100%" height="120" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 60C240 120 480 0 720 60C960 120 1200 0 1440 60V120H0V60Z" fill="%230056a6" fill-opacity="0.12"/></svg>') no-repeat center/cover;
+    margin-bottom: -60px;
+    z-index: 0;
+    position: relative;
+}
 
+.catalog-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin: 32px 0 24px 0;
+    background: #e3f0fc;
+    border-radius: 12px;
+    padding: 14px 10px;
+    box-shadow: 0 2px 8px rgba(0,86,166,0.06);
+}
 
+.catalog-nav a {
+    color: #0056a6;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 18px;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+    font-size: 1.08em;
+}
+
+.catalog-nav a:hover,
+.catalog-nav a:focus {
+    background: #b3d1f3;
+    color: #003a6d;
+}
+/* aktualizace pro mobily */
+
+@media (max-width: 600px) {
+    .catalog-nav {
+        flex-direction: column;
+        gap: 8px;
+        padding: 10px 4px;
+        font-size: 1em;
+    }
+    .catalog-nav a {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+        font-size: 1em;
+    }
+}
+@media (max-width: 900px) {
+    .brands-catalog {
+        gap: 18px;
+    }
+    .brand-card {
+        width: 95vw;
+        max-width: 350px;
+        min-width: unset;
+        min-height: 320px;
+    }
+}
+@media (max-width: 600px) {
+    .brands-catalog {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+    .brand-card {
+        width: 98vw;
+        max-width: 98vw;
+        min-height: 260px;
+        padding: 18px 6px 14px 6px;
+    }
+    .brand-card img {
+        height: 90px;
+        width: 90vw;
+        max-width: 180px;
+    }
+}
+@media (max-width: 600px) {
+    .container {
+        width: 99%;
+        padding: 0 2vw;
+    }
+    .brands-section-title {
+        font-size: 1.1em;
+        padding-bottom: 4px;
+        margin: 28px 0 12px 0;
+    }
+}
+@media (max-width: 600px) {
+    nav ul {
+        gap: 8px;
+        font-size: 0.98em;
+    }
+    nav ul li a {
+        padding: 4px 6px;
+    }
+}
+
+/* Hamburger menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+    margin-left: 10px;
+}
+.hamburger span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    margin: 5px 0;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+@media (max-width: 900px) {
+    .hamburger {
+        display: flex;
+    }
+    nav ul {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: #0056a6;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 0;
+        margin: 0;
+        z-index: 1000;
+        display: none;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+    nav ul.open {
+        display: flex;
+    }
+    nav ul li {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #1a4c7a;
+    }
+    nav ul li:last-child {
+        border-bottom: none;
+    }
+    nav ul li a {
+        display: block;
+        padding: 16px 0;
+        font-size: 1.1em;
+    }
+}

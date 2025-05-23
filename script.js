@@ -109,6 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
     const carouselImages = document.querySelector(".carousel-images");
     const images = document.querySelectorAll(".carousel-images img");
+    const dotsContainer = document.querySelector(".carousel-dots");
     const imageCount = images.length;
 
     // Duplikace prvního a posledního obrázku pro nekonečné posouvání
@@ -126,27 +127,70 @@ document.addEventListener("DOMContentLoaded", () => {
     const imageWidth = 100; // Šířka obrázku v procentech
     const transitionTime = 1000; // Doba přechodu (v ms)
     const intervalTime = 4000; // Interval mezi posuny (v ms)
+    let intervalId;
+
+    // Vytvoření teček
+    for (let i = 0; i < imageCount; i++) {
+        const dot = document.createElement("span");
+        dot.classList.add("carousel-dot");
+        if (i === 0) dot.classList.add("active");
+        dot.addEventListener("click", () => {
+            goToSlide(i + 1);
+            resetInterval();
+        });
+        dotsContainer.appendChild(dot);
+    }
+    const dots = document.querySelectorAll(".carousel-dot");
+
+    function updateDots() {
+        dots.forEach(dot => dot.classList.remove("active"));
+        let dotIndex = currentIndex - 1;
+        if (dotIndex < 0) dotIndex = imageCount - 1;
+        if (dotIndex >= imageCount) dotIndex = 0;
+        dots[dotIndex].classList.add("active");
+    }
+
+    function goToSlide(index) {
+        currentIndex = index;
+        carouselImages.style.transition = `transform ${transitionTime}ms ease-in-out`;
+        carouselImages.style.transform = `translateX(-${currentIndex * imageWidth}%)`;
+        updateDots();
+    }
 
     // Nastavení výchozí pozice
     carouselImages.style.transform = `translateX(-${currentIndex * imageWidth}%)`;
 
     // Automatické posouvání
-    const startCarousel = () => {
-        setInterval(() => {
+    function startCarousel() {
+        intervalId = setInterval(() => {
             currentIndex++;
             carouselImages.style.transition = `transform ${transitionTime}ms ease-in-out`;
             carouselImages.style.transform = `translateX(-${currentIndex * imageWidth}%)`;
+            updateDots();
 
-            // Reset pozice na první obrázek (bez přechodu)
             setTimeout(() => {
                 if (currentIndex === allImages.length - 1) {
                     carouselImages.style.transition = "none";
                     currentIndex = 1;
                     carouselImages.style.transform = `translateX(-${currentIndex * imageWidth}%)`;
+                    updateDots();
+                }
+                if (currentIndex === 0) {
+                    carouselImages.style.transition = "none";
+                    currentIndex = imageCount;
+                    carouselImages.style.transform = `translateX(-${currentIndex * imageWidth}%)`;
+                    updateDots();
                 }
             }, transitionTime);
         }, intervalTime);
-    };
+    }
+
+    function resetInterval() {
+        clearInterval(intervalId);
+        startCarousel();
+    }
+
+    carouselImages.addEventListener("transitionend", updateDots);
 
     startCarousel();
 });
@@ -173,20 +217,24 @@ document.addEventListener("DOMContentLoaded", () => {
             const serviceItem = btn.closest('.service-item');
             // Najdi detail v rámci tohoto service-itemu
             const details = serviceItem.querySelector('.cleaning-details');
-            // Zavři všechny ostatní otevřené detaily
+            // Zavři všechny ostatní otevřené detaily a nastav text tlačítka zpět na "Více informací"
             document.querySelectorAll('.cleaning-details').forEach(d => {
                 if (d !== details) {
                     d.classList.remove('open');
                     setTimeout(() => { d.style.display = 'none'; }, 500);
+                    const otherBtn = d.closest('.service-item')?.querySelector('.show-details-btn');
+                    if (otherBtn) otherBtn.textContent = "Více informací";
                 }
             });
-            // Přepni zobrazení detailu s animací
+            // Přepni zobrazení detailu s animací a změň text tlačítka
             if (!details.classList.contains('open')) {
                 details.style.display = 'block';
                 setTimeout(() => { details.classList.add('open'); }, 10);
+                btn.textContent = "Méně informací";
             } else {
                 details.classList.remove('open');
                 setTimeout(() => { details.style.display = 'none'; }, 500);
+                btn.textContent = "Více informací";
             }
         });
     });

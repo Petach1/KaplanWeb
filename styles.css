@@ -232,27 +232,61 @@ nav a {
 }
 
 .carousel {
-    flex: 1 1 40%; /* Carousel zabere 40 % šířky */
     position: relative;
-    overflow: hidden; /* Skryje obrázky mimo viditelnou oblast */
+    overflow: hidden;
     width: 100%;
-    max-width: 500px; /* Maximální šířka carouselu */
-    margin: 0 auto; /* Zarovná carousel na střed */
-    border-radius: 10px; /* Zaoblené rohy */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Jemný stín */
+    max-width: 500px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .carousel-images {
     display: flex;
-    transition: transform 1s ease-in-out; /* Plynulý přechod mezi obrázky */
+    transition: transform 1s cubic-bezier(.4,0,.2,1);
     width: 100%;
 }
 
 .carousel-images img {
-    width: 100%; /* Obrázek zabere celou šířku carouselu */
-    flex-shrink: 0; /* Zabrání zmenšení obrázku */
-    object-fit: cover; /* Zachová proporce obrázku */
-    border-radius: 10px; /* Zaoblené rohy */
+    width: 100%;
+    max-width: 500px;
+    height: 600px; /* zvýšeno z 400px na 600px */
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+    display: block;
+    background: #e3f0fc;
+}
+
+/* Dots for carousel */
+.carousel-dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 18px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    background: none;
+    z-index: 2;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.18));
+}
+
+.carousel-dot {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.7);
+    border: 2px solid #0056a6;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+}
+.carousel-dot.active {
+    background: #0056a6;
+    transform: scale(1.2);
 }
 
 /* Sekce Služby */
@@ -279,6 +313,19 @@ nav a {
     text-align: left;
     border-bottom: 2px solid #0056a6;
     padding-bottom: 5px;
+}
+
+/* Nový styl pro nadpisy kategorií služeb */
+.service-category-title {
+    color: #0056a6;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 2px solid #0056a6;
+    padding-bottom: 5px;
+    margin-top: 40px;
+    letter-spacing: 1px;
+    display: inline-block;      /* Přidáno */
 }
 
 /* Karty služeb */
@@ -323,43 +370,36 @@ nav a {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    align-items: flex-start;
+    align-items: stretch; /* změna z flex-start na stretch */
 }
 
 .service-item.prodejna .service-text {
     flex: 1 1 50%;
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* zarovná text vertikálně na střed */
+    min-height: 320px; /* Přidáno: zajistí minimální výšku pro text i obrázek */
 }
 
-.service-item.prodejna .map-container {
-    flex: 1 1 100%;
-    margin-top: 20px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.service-item.prodejna .map-container iframe {
-    width: 100%;
-    height: 250px;
-    border: 0;
-    display: block;
-}
-
-/* Prodejna - styl obrázku */
 .service-item.prodejna .service-image {
-    flex: 1 1 40%; /* Obrázek zabere 40 % šířky */
-    max-width: 300px; /* Maximální šířka obrázku */
-    margin: 0 auto; /* Zarovná obrázek na střed */
-    text-align: center;
+    flex: 1 1 50%;        /* Obrázek zabere více šířky */
+    max-width: 500px;     /* Zvýší maximální šířku obrázku */
+    min-width: 320px;     /* Zajistí minimální šířku obrázku */
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
 }
 
 .service-item.prodejna .service-image img {
-    width: 100%; /* Obrázek zabere celou šířku svého kontejneru */
-    height: auto; /* Zachová proporce obrázku */
-    border-radius: 10px; /* Zaoblené rohy pro jemnější vzhled */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Jemný stín */
-    object-fit: cover; /* Zajistí správné měřítko obrázku */
+    width: 100%;
+    height: 700px;      /* Nastaví opravdu velkou výšku obrázku */
+    min-height: 700px;  /* Zajistí minimální výšku */
+    max-height: 900px;  /* Volitelně omezí maximální výšku */
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: block;
 }
 
 /* Responzivita */
@@ -379,6 +419,17 @@ nav a {
 
     .service-item.prodejna .service-text {
         text-align: center;
+        min-height: unset;
+    }
+
+    .service-item.prodejna .service-image {
+        max-width: 100%;
+        min-height: unset;
+    }
+
+    .service-item.prodejna .service-image img {
+        min-height: 180px;
+        max-height: 300px;
     }
 }
 
@@ -583,7 +634,7 @@ nav.scrolled + header .header-logo {
 .service-item.prodejna {
     display: flex;
     flex-wrap: wrap; /* Zajistí přizpůsobení na menších obrazovkách */
-    align-items: flex-start; /* Zarovná obsah nahoře */
+    align-items: stretch; /* Zarovná obsah nahoře */
     gap: 20px; /* Mezera mezi prvky */
 }
 
@@ -593,23 +644,23 @@ nav.scrolled + header .header-logo {
 }
 
 .service-item.prodejna .service-image {
-    flex: 1 1 40%; /* Obrázek zabere 40 % šířky */
-    max-width: 300px; /* Maximální šířka obrázku */
+    flex: 1 1 50%;        /* Obrázek zabere více šířky */
+    max-width: 500px;     /* Zvýší maximální šířku obrázku */
+    min-width: 320px;     /* Zajistí minimální šířku obrázku */
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
 }
 
-.service-item.prodejna .map-container {
-    flex: 1 1 100%; /* Mapa zabere celou šířku */
-    margin-top: 20px; /* Mezera nad mapou */
-    border-radius: 10px; /* Zaoblené rohy */
-    overflow: hidden; /* Skryje přesahující části */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Jemný stín */
-}
-
-.service-item.prodejna .map-container iframe {
-    width: 100%; /* Mapa zabere celou šířku kontejneru */
-    height: 250px; /* Výška mapy */
-    border: 0; /* Odstraní rámeček */
-    display: block; /* Zajistí správné zobrazení */
+.service-item.prodejna .service-image img {
+    width: 100%;
+    height: 700px;      /* Nastaví opravdu velkou výšku obrázku */
+    min-height: 700px;  /* Zajistí minimální výšku */
+    max-height: 900px;  /* Volitelně omezí maximální výšku */
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: block;
 }
 
 /* Responzivita pro menší obrazovky */
@@ -687,7 +738,7 @@ nav.scrolled + header .header-logo {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.service-category:first-of_type .service-item h4 {
+.service-category:first_of_type .service-item h4 {
     color: #0056a6;
     margin-bottom: 10px;
     font-size: 1.2em;
@@ -775,25 +826,71 @@ nav.scrolled + header .header-logo {
 /* Carousel - základní styl */
 .carousel {
     position: relative;
-    overflow: hidden; /* Skryje obrázky mimo viditelnou oblast */
+    overflow: hidden;
     width: 100%;
-    max-width: 500px; /* Maximální šířka carouselu */
-    margin: 20px auto; /* Zarovná carousel na střed */
-    border-radius: 10px; /* Zaoblené rohy */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Jemný stín */
+    max-width: 500px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .carousel-images {
     display: flex;
-    transition: transform 1s ease-in-out; /* Plynulý přechod mezi obrázky */
+    transition: transform 1s cubic-bezier(.4,0,.2,1);
     width: 100%;
 }
 
 .carousel-images img {
-    width: 100%; /* Obrázek zabere celou šířku carouselu */
-    flex-shrink: 0; /* Zabrání zmenšení obrázku */
-    object-fit: cover; /* Zachová proporce obrázku */
-    border-radius: 10px; /* Zaoblené rohy */
+    width: 100%;
+    max-width: 500px;
+    height: 600px; /* zvýšeno z 400px na 600px */
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+    display: block;
+    background: #e3f0fc;
+}
+
+/* Dots for carousel */
+.carousel-dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 18px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    background: none;
+    z-index: 2;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.18));
+}
+
+.carousel-dot {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.7);
+    border: 2px solid #0056a6;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+}
+.carousel-dot.active {
+    background: #0056a6;
+    transform: scale(1.2);
+}
+
+/* Responzivita carouselu */
+@media (max-width: 600px) {
+    .carousel {
+        max-width: 98vw;
+    }
+    .carousel-images img {
+        max-width: 98vw;
+        height: 340px; /* zvýšeno z 240px na 340px */
+    }
 }
 
 /* Styl pro rozbalovací detaily služeb */
@@ -1171,4 +1268,12 @@ nav.scrolled + header .header-logo {
         padding: 16px 0;
         font-size: 1.1em;
     }
+}
+
+/* Nový styl pro text v sekci Kariéra */
+.career-text {
+    text-align: center;
+    font-size: 1.15em;
+    margin: 30px 0 20px 0;
+    color: #333;
 }

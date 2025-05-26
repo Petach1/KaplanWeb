@@ -1308,7 +1308,6 @@ nav.scrolled + header .header-logo {
         display: none;
         box-shadow: 0 4px 16px rgba(0,0,0,0.12);
         border-radius: 0 0 12px 12px;
-        animation: navDrop 0.3s;
     }
     nav ul.open {
         display: flex;
@@ -1317,6 +1316,7 @@ nav.scrolled + header .header-logo {
         width: 100%;
         text-align: center;
         border-bottom: 1px solid #1a4c7a;
+        background: #0056a6; /* Každý řádek má stejné pozadí */
     }
     nav ul li:last-child {
         border-bottom: none;
@@ -1325,8 +1325,61 @@ nav.scrolled + header .header-logo {
         display: block;
         padding: 18px 0;
         font-size: 1.15em;
+        color: #fff;
+        background: none;
     }
 }
+
+/* OPRAVA hamburger menu pro mobily */
+@media (max-width: 900px) {
+    nav {
+        flex-wrap: wrap;
+        height: auto;
+        min-height: 70px;
+        position: relative;
+    }
+    .hamburger {
+        display: flex;
+        margin-left: auto;
+    }
+    nav ul {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: #0056a6;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 0;
+        margin: 0;
+        z-index: 1100;
+        display: none;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        border-radius: 0 0 12px 12px;
+    }
+    nav ul.open {
+        display: flex;
+    }
+    nav ul li {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #1a4c7a;
+        background: #0056a6; /* Každý řádek má stejné pozadí */
+    }
+    nav ul li:last-child {
+        border-bottom: none;
+    }
+    nav ul li a {
+        display: block;
+        padding: 18px 0;
+        font-size: 1.15em;
+        color: #fff;
+        background: none;
+    }
+}
+
+/* OPRAVA: Zruš animaci navDrop pokud ji nechceš */
 @keyframes navDrop {
     0% { opacity: 0; transform: translateY(-20px);}
     100% { opacity: 1; transform: translateY(0);}

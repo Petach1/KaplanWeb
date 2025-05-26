@@ -1259,8 +1259,9 @@ nav.scrolled + header .header-logo {
     background: none;
     border: none;
     cursor: pointer;
-    z-index: 1100;
+    z-index: 1101;
     margin-left: 10px;
+    transition: background 0.2s;
 }
 .hamburger span {
     display: block;
@@ -1271,11 +1272,22 @@ nav.scrolled + header .header-logo {
     border-radius: 2px;
     transition: all 0.3s;
 }
+.hamburger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
 @media (max-width: 900px) {
     nav {
         flex-wrap: wrap;
         height: auto;
         min-height: 70px;
+        position: relative;
     }
     .hamburger {
         display: flex;
@@ -1292,7 +1304,7 @@ nav.scrolled + header .header-logo {
         gap: 0;
         padding: 0;
         margin: 0;
-        z-index: 1000;
+        z-index: 1100;
         display: none;
         box-shadow: 0 4px 16px rgba(0,0,0,0.12);
         border-radius: 0 0 12px 12px;
@@ -1311,8 +1323,8 @@ nav.scrolled + header .header-logo {
     }
     nav ul li a {
         display: block;
-        padding: 16px 0;
-        font-size: 1.1em;
+        padding: 18px 0;
+        font-size: 1.15em;
     }
 }
 @keyframes navDrop {

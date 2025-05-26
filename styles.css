@@ -393,12 +393,31 @@ nav a {
 
 .service-item.prodejna .service-image img {
     width: 100%;
-    height: 700px;      /* Nastaví opravdu velkou výšku obrázku */
-    min-height: 700px;  /* Zajistí minimální výšku */
-    max-height: 900px;  /* Volitelně omezí maximální výšku */
+    height: 100%;
+    min-height: 320px;
+    max-height: 420px;
     object-fit: cover;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: block;
+}
+
+/* Prodejna - mapa na celou šířku vedle textu a obrázku */
+.service-item.prodejna .map-container {
+    flex: 1 1 100%;
+    max-width: 100%;
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    align-self: stretch;
+}
+
+.service-item.prodejna .map-container iframe {
+    width: 100%;
+    height: 320px;
+    min-height: 220px;
+    border: 0;
     display: block;
 }
 
@@ -480,15 +499,7 @@ nav a {
     opacity: 1; /* Zviditelnění obsahu */
 }
 
-/* Obrázky v sekci services */
-.service-image img {
-    width: 100%; /* Obrázek zabere celou šířku svého kontejneru */
-    max-width: 300px; /* Maximální šířka obrázku */
-    height: auto; /* Zachová proporce obrázku */
-    border-radius: 10px; /* Zaoblené rohy pro jemnější vzhled */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Jemný stín */
-    object-fit: cover; /* Zajistí správné měřítko obrázku */
-}
+
 
 @media (max-width: 768px) {
     .header-content {
@@ -654,12 +665,31 @@ nav.scrolled + header .header-logo {
 
 .service-item.prodejna .service-image img {
     width: 100%;
-    height: 700px;      /* Nastaví opravdu velkou výšku obrázku */
-    min-height: 700px;  /* Zajistí minimální výšku */
-    max-height: 900px;  /* Volitelně omezí maximální výšku */
+    height: 100%;
+    min-height: 320px;
+    max-height: 420px;
     object-fit: cover;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: block;
+}
+
+/* Prodejna - mapa na celou šířku vedle textu a obrázku */
+.service-item.prodejna .map-container {
+    flex: 1 1 100%;
+    max-width: 100%;
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    align-self: stretch;
+}
+
+.service-item.prodejna .map-container iframe {
+    width: 100%;
+    height: 320px;
+    min-height: 220px;
+    border: 0;
     display: block;
 }
 
@@ -1148,16 +1178,24 @@ nav.scrolled + header .header-logo {
 
 @media (max-width: 600px) {
     .catalog-nav {
-        flex-direction: column;
+        flex-direction: row;
+        overflow-x: auto;
         gap: 8px;
         padding: 10px 4px;
         font-size: 1em;
+        background: #e3f0fc;
+        border-radius: 8px;
+        margin-bottom: 18px;
+        scrollbar-width: thin;
     }
     .catalog-nav a {
-        width: 100%;
+        white-space: nowrap;
+        min-width: 120px;
+        width: auto;
         text-align: center;
-        padding: 10px 0;
+        padding: 10px 12px;
         font-size: 1em;
+        flex: 0 0 auto;
     }
 }
 @media (max-width: 900px) {
@@ -1234,8 +1272,14 @@ nav.scrolled + header .header-logo {
     transition: all 0.3s;
 }
 @media (max-width: 900px) {
+    nav {
+        flex-wrap: wrap;
+        height: auto;
+        min-height: 70px;
+    }
     .hamburger {
         display: flex;
+        margin-left: auto;
     }
     nav ul {
         position: absolute;
@@ -1251,6 +1295,8 @@ nav.scrolled + header .header-logo {
         z-index: 1000;
         display: none;
         box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        border-radius: 0 0 12px 12px;
+        animation: navDrop 0.3s;
     }
     nav ul.open {
         display: flex;
@@ -1269,11 +1315,7 @@ nav.scrolled + header .header-logo {
         font-size: 1.1em;
     }
 }
-
-/* Nový styl pro text v sekci Kariéra */
-.career-text {
-    text-align: center;
-    font-size: 1.15em;
-    margin: 30px 0 20px 0;
-    color: #333;
+@keyframes navDrop {
+    0% { opacity: 0; transform: translateY(-20px);}
+    100% { opacity: 1; transform: translateY(0);}
 }

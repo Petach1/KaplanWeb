@@ -1290,7 +1290,8 @@ nav.scrolled + header .header-logo {
     }
     .hamburger {
         display: flex;
-        margin-left: auto;
+        margin-left: 0 !important;
+        margin-right: 16px !important; /* Posune hamburger/křížek více doleva */
     }
     nav ul {
         position: absolute;
@@ -1339,7 +1340,8 @@ nav.scrolled + header .header-logo {
     }
     .hamburger {
         display: flex;
-        margin-left: auto;
+        margin-left: 0 !important;
+        margin-right: 16px !important; /* Posune hamburger/křížek více doleva */
     }
     nav ul {
         position: absolute;

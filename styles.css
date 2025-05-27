@@ -952,7 +952,7 @@ nav.scrolled + header .header-logo {
 }
 .contacts-persons > div {
     background: #f4f4f4;
-    border-left: 4px solid #0056a6;
+    border-left: 4px solid white;
     padding: 12px 18px;
     border-radius: 5px;
     font-size: 1em;
@@ -1386,9 +1386,9 @@ nav.scrolled + header .header-logo {
 
 @media (max-width: 600px) {
     header .contact-info {
-        color: #fff !important;
+        color: white !important;
     }
     header .contact-info p {
-        color: #fff !important;
+        color: white !important;
     }
 }

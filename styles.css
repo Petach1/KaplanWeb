@@ -1383,3 +1383,12 @@ nav.scrolled + header .header-logo {
     0% { opacity: 0; transform: translateY(-20px);}
     100% { opacity: 1; transform: translateY(0);}
 }
+
+@media (max-width: 600px) {
+    header .contact-info {
+        color: #fff !important;
+    }
+    header .contact-info p {
+        color: #fff !important;
+    }
+}

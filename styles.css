@@ -1229,7 +1229,7 @@ nav.scrolled + header .header-logo {
 }
 @media (max-width: 600px) {
     .container {
-        width: 100%;
+        width: 99%;
     }
     .brands-section-title {
         font-size: 1.1em;

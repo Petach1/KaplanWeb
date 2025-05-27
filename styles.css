@@ -153,10 +153,79 @@ nav a {
 
 /* Hero sekce */
 .hero {
-    background: url('hero-image.jpg') no-repeat center center/cover;
-    color: #0056a6;
+    position: relative;
+    min-height: 420px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 1.2s cubic-bezier(.4,0,.2,1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    padding: 100px 20px;
+}
+
+.hero-bg,
+.hero-bg-next {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: 100% center;
+    background-repeat: no-repeat;
+    z-index: 0;
+    transition: opacity 1.2s, background-image 0s;
+    opacity: 1;
+    pointer-events: none;
+}
+.hero-bg-next {
+    opacity: 0;
+    z-index: 0;
+}
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    background: 
+        
+        url('https://github.com/Petach1/KaplanWeb/blob/main/Vice1.webp?raw=true'),
+        url('https://github.com/Petach1/KaplanWeb/blob/main/Vice2.webp?raw=true'),
+        url('https://github.com/Petach1/KaplanWeb/blob/main/Vice3.webp?raw=true');
+    background-repeat: repeat-x;
+    background-size: 33.33vw 100%;
+    background-position-x: 0vw, 33.33vw, 66.66vw, 100vw, 133.33vw, 166.66vw;
+    animation: heroSlideLinear 36s linear infinite;
+    filter: grayscale(0.3) brightness(0.6) blur(6px);
+}
+@keyframes heroSlideLinear {
+    0% {
+        background-position-x: 0vw, 33.33vw, 66.66vw, 100vw, 133.33vw, 166.66vw;
+    }
+    100% {
+        background-position-x: -200vw, -166.66vw, -133.33vw, -100vw, -66.66vw, -33.33vw;
+    }
+}
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(30,30,30,0.68);
+    z-index: 1;
+    pointer-events: none;
+}
+.hero .container {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.7);
+    text-align: center;
+}
+.hero {
+    overflow: hidden;
 }
 
 .hero h2 {
@@ -1291,7 +1360,10 @@ nav.scrolled + header .header-logo {
     .hamburger {
         display: flex;
         margin-left: 0 !important;
-        margin-right: 16px !important; /* Posune hamburger/křížek více doleva */
+        margin-right: 28px !important; /* Větší odsazení od pravého okraje */
+    }
+    nav {
+        padding-right: 0 !important; /* Zruší případný padding vpravo */
     }
     nav ul {
         position: absolute;
@@ -1341,7 +1413,10 @@ nav.scrolled + header .header-logo {
     .hamburger {
         display: flex;
         margin-left: 0 !important;
-        margin-right: 16px !important; /* Posune hamburger/křížek více doleva */
+        margin-right: 28px !important; /* Větší odsazení od pravého okraje */
+    }
+    nav {
+        padding-right: 0 !important; /* Zruší případný padding vpravo */
     }
     nav ul {
         position: absolute;
@@ -1384,4 +1459,29 @@ nav.scrolled + header .header-logo {
 @keyframes navDrop {
     0% { opacity: 0; transform: translateY(-20px);}
     100% { opacity: 1; transform: translateY(0);}
+}
+
+/* Hero slider */
+.hero-slider {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    height: 320px;
+    margin: 32px auto 0 auto;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+}
+.hero-slide {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.2s cubic-bezier(.4,0,.2,1);
+    filter: grayscale(0.5) brightness(0.85);
+    z-index: 1;
+}
+.hero-slide.active {
+    opacity: 1;
+    z-index: 2;
 }

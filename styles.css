@@ -1507,39 +1507,91 @@ nav.scrolled + header .header-logo {
 }
 @media (max-width: 600px) {
     .brands-section-title {
-        font-size: 1.2em;
-        padding-bottom: 8px;
-        margin: 32px 0 16px 0;
-        text-align: center; /* Přidáno: zarovná nadpis na střed */
-        display: block;     /* Přidáno: zajistí plnou šířku */
-        width: 100%;        /* Přidáno: zajistí plnou šířku */
+        font-size: 1.18em;
+        padding-bottom: 6px;
+        margin: 28px 0 10px 0;
+        text-align: center;
+        display: block;
+        width: 100%;
+        letter-spacing: 0.5px;
+        border-bottom-width: 1px;
     }
     .brands-catalog {
         flex-direction: column;
-        align-items: center;
-        gap: 18px; /* Větší mezera mezi kartami */
+        align-items: stretch;
+        gap: 12px;
+        margin: 18px 0 18px 0;
+        padding: 0 2vw;
     }
     .brand-card {
-        width: 98vw;
-        max-width: 98vw;
-        min-height: 220px;
-        padding: 18px 6px 14px 6px;
+        width: 100%;
+        max-width: 100vw;
+        min-width: unset;
+        min-height: 180px;
+        padding: 12px 6px 12px 6px;
         margin: 0 auto;
-        text-align: center; /* Přidáno: text na střed */
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 0 1px 4px rgba(0,86,166,0.07);
     }
     .brand-card img {
-        height: 90px;
-        width: 90vw;
-        max-width: 180px;
-        margin: 0 auto 14px auto;
+        height: 60px;
+        width: 80vw;
+        max-width: 140px;
+        margin: 0 auto 10px auto;
         display: block;
+        border-radius: 8px;
+        padding: 6px;
+        box-shadow: none;
     }
     .brand-info h4 {
         text-align: center;
-        font-size: 1.08em;
+        font-size: 1.05em;
+        margin-bottom: 6px;
     }
-    .brand-info p,
+    .brand-info p {
+        text-align: center;
+        font-size: 0.98em;
+        margin-bottom: 6px;
+    }
     .brand-info ul {
         text-align: center;
+        font-size: 0.95em;
+        margin: 0.5em 0 0.5em 0;
+        padding-left: 1.1em;
+    }
+    .brand-info ul li {
+        margin-bottom: 0.3em;
+    }
+    .catalog-nav {
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 6px;
+        padding: 8px 2px;
+        font-size: 0.98em;
+        background: #e3f0fc;
+        border-radius: 8px;
+        margin-bottom: 12px;
+        scrollbar-width: thin;
+    }
+    .catalog-nav a {
+        white-space: nowrap;
+        min-width: 100px;
+        width: auto;
+        text-align: center;
+        padding: 8px 8px;
+        font-size: 0.98em;
+        flex: 0 0 auto;
+        border-radius: 5px;
+    }
+    /* Omezit stíny a rámečky pro čistší vzhled */
+    .brand-card,
+    .brand-card img {
+        box-shadow: none;
+        border: 1px solid #e0e0e0;
+    }
+    /* Omezit mezery mezi sekcemi sortimentu */
+    .brands-catalog + .brands-section-title {
+        margin-top: 18px;
     }
 }

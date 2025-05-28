@@ -798,13 +798,15 @@ nav.scrolled + header .header-logo {
 }
 
 .service-item h3 {
+    margin: 0 0 12px 0;
     color: #0056a6;
-    margin-bottom: 10px;
+    font-size: 1.5em;
 }
 
 .service-item p {
-    margin: 5px 0;
-    line-height: 1.6;
+    margin: 0 0 18px 0;
+    font-size: 1.15em;
+    color: #333;
 }
 
 /* Tlačítko pro zobrazení detailů */
@@ -1497,4 +1499,18 @@ nav.scrolled + header .header-logo {
 .hero-slide.active {
     opacity: 1;
     z-index: 2;
+}
+
+@media (max-width: 900px) {
+    nav {
+        padding-right: 20px !important; /* Zvýší odsazení navigace od pravého okraje */
+    }
+    .hamburger {
+        width: 40px; /* Zmenší šířku tlačítka */
+        height: 40px; /* Zmenší výšku tlačítka */
+        margin-right: 0 !important; /* Zruší margin */
+    }
+    .hamburger span {
+        width: 24px; /* Zmenší šířku čárek */
+    }
 }

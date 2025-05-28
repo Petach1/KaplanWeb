@@ -7,7 +7,7 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #ececec; /* Jemně tmavší šedá */
     color: #333;
 }
 
@@ -1324,6 +1324,11 @@ nav.scrolled + header .header-logo {
     nav ul {
         gap: 8px;
         font-size: 0.98em;
+        justify-content: flex-start !important; /* Zruší centrování */
+        text-align: left !important;           /* Zruší centrování textu */
+    }
+    nav ul li {
+        text-align: left !important;           /* Zruší centrování položek */
     }
     nav ul li a {
         padding: 4px 6px;
@@ -1535,7 +1540,6 @@ nav.scrolled + header .header-logo {
     .brand-card {
         width: 100%;
         max-width: 100vw;
-        min-width: unset;
         min-height: 180px;
         padding: 12px 6px 12px 6px;
         margin: 0 auto;

@@ -93,7 +93,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     logoLink.addEventListener("click", (e) => {
         e.preventDefault();
-        window.location.href = window.location.pathname; // Načte stránku bez kotvy, vždy nahoře
+        // Načte stránku bez hash/search a vynutí reload odshora (nepoužije cache ani pozici)
+        window.location.replace(window.location.origin + window.location.pathname);
     });
 });
 
@@ -271,6 +272,11 @@ document.addEventListener("DOMContentLoaded", function() {
             nav.classList.remove("hide-on-scroll");
         }
     });
+});
+
+// Vynutí scroll na začátek i při reloadu (F5, Ctrl+R, Cmd+R)
+window.addEventListener("pageshow", function() {
+    window.scrollTo(0, 0);
 });
 
 

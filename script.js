@@ -256,19 +256,34 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function() {
     let lastScroll = window.scrollY;
     const nav = document.querySelector("nav");
+    let ticking = false;
 
-    window.addEventListener("scroll", function() {
+    function handleScroll() {
         const currentScroll = window.scrollY;
-        if (window.innerWidth <= 900) {
+        const isMobile = window.innerWidth <= 900;
+        if (isMobile) {
             if (currentScroll > lastScroll && currentScroll > 60) {
                 // Scroll dolů – schovej nav
                 nav.classList.add("hide-on-scroll");
-            } else {
+            } else if (currentScroll < lastScroll) {
                 // Scroll nahoru – ukaž nav
                 nav.classList.remove("hide-on-scroll");
             }
             lastScroll = currentScroll;
         } else {
+            nav.classList.remove("hide-on-scroll");
+        }
+        ticking = false;
+    }
+
+    window.addEventListener("scroll", function() {
+        if (!ticking) {
+            window.requestAnimationFrame(handleScroll);
+            ticking = true;
+        }
+    });
+    window.addEventListener("resize", function() {
+        if (window.innerWidth > 900) {
             nav.classList.remove("hide-on-scroll");
         }
     });

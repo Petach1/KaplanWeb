@@ -1608,3 +1608,19 @@ nav.scrolled + header .header-logo {
         margin-top: 18px;
     }
 }
+@media (max-width: 900px) {
+    nav ul {
+        text-align: center !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    nav ul li {
+        text-align: center !important;
+    }
+    nav ul li a {
+        text-align: center !important;
+        justify-content: center !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}

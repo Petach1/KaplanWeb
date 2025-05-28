@@ -1330,6 +1330,7 @@ nav.scrolled + header .header-logo {
     z-index: 1101;
     margin-left: 10px;
     transition: background 0.2s;
+    padding-right: 6px; /* Přidá trochu místa vpravo */
 }
 .hamburger span {
     display: block;

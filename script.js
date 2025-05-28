@@ -245,7 +245,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const navUl = document.querySelector('nav ul');
     hamburger.addEventListener('click', function() {
         navUl.classList.toggle('open');
-        hamburger.classList.toggle('active');
+
     });
     // Zavři menu po kliknutí na odkaz (na mobilu)
     navUl.querySelectorAll('a').forEach(link => {

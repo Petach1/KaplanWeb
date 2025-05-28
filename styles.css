@@ -1493,6 +1493,15 @@ nav.scrolled + header .header-logo {
 }
 
 @media (max-width: 900px) {
+    nav.hide-on-scroll {
+        transform: translateY(-100%);
+        transition: transform 0.3s;
+    }
+    nav {
+        transition: transform 0.3s;
+    }
+}
+@media (max-width: 900px) {
     nav {
         padding-right: 20px !important; /* Zvýší odsazení navigace od pravého okraje */
     }

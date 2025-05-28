@@ -92,11 +92,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const logoLink = document.querySelector(".nav-logo").parentElement;
 
     logoLink.addEventListener("click", (e) => {
-        e.preventDefault(); // Zabrání výchozímu chování odkazu
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth", // Plynulý přechod
-        });
+        e.preventDefault();
+        window.location.href = window.location.pathname; // Načte stránku bez kotvy, vždy nahoře
     });
 });
 
@@ -251,8 +248,28 @@ document.addEventListener("DOMContentLoaded", function() {
     navUl.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             navUl.classList.remove('open');
-            hamburger.classList.remove('active');
         });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    let lastScroll = window.scrollY;
+    const nav = document.querySelector("nav");
+
+    window.addEventListener("scroll", function() {
+        const currentScroll = window.scrollY;
+        if (window.innerWidth <= 900) {
+            if (currentScroll > lastScroll && currentScroll > 60) {
+                // Scroll dolů – schovej nav
+                nav.classList.add("hide-on-scroll");
+            } else {
+                // Scroll nahoru – ukaž nav
+                nav.classList.remove("hide-on-scroll");
+            }
+            lastScroll = currentScroll;
+        } else {
+            nav.classList.remove("hide-on-scroll");
+        }
     });
 });
 

@@ -1355,15 +1355,6 @@ nav.scrolled + header .header-logo {
     border-radius: 2px;
     transition: all 0.3s;
 }
-.hamburger.active span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-}
-.hamburger.active span:nth-child(2) {
-    opacity: 0;
-}
-.hamburger.active span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-}
 
 @media (max-width: 900px) {
     nav {
@@ -1512,5 +1503,43 @@ nav.scrolled + header .header-logo {
     }
     .hamburger span {
         width: 24px; /* Zmenší šířku čárek */
+    }
+}
+@media (max-width: 600px) {
+    .brands-section-title {
+        font-size: 1.2em;
+        padding-bottom: 8px;
+        margin: 32px 0 16px 0;
+        text-align: center; /* Přidáno: zarovná nadpis na střed */
+        display: block;     /* Přidáno: zajistí plnou šířku */
+        width: 100%;        /* Přidáno: zajistí plnou šířku */
+    }
+    .brands-catalog {
+        flex-direction: column;
+        align-items: center;
+        gap: 18px; /* Větší mezera mezi kartami */
+    }
+    .brand-card {
+        width: 98vw;
+        max-width: 98vw;
+        min-height: 220px;
+        padding: 18px 6px 14px 6px;
+        margin: 0 auto;
+        text-align: center; /* Přidáno: text na střed */
+    }
+    .brand-card img {
+        height: 90px;
+        width: 90vw;
+        max-width: 180px;
+        margin: 0 auto 14px auto;
+        display: block;
+    }
+    .brand-info h4 {
+        text-align: center;
+        font-size: 1.08em;
+    }
+    .brand-info p,
+    .brand-info ul {
+        text-align: center;
     }
 }

@@ -1622,3 +1622,19 @@ nav.scrolled + header .header-logo {
         text-align: center; /* zarovná text doleva, můžeš změnit na center pokud chceš na střed */
     }
 }
+
+/* Oprava: produkty v sortimentu - body v .brands-catalog ul zarovnat doleva */
+.brands-catalog ul {
+    text-align: left !important;
+    margin-left: 1.2em;
+    padding-left: 1.2em;
+}
+
+@media (max-width: 600px) {
+    /* ...existing code... */
+    .brand-info ul {
+        text-align: left !important;
+        /* ...existing code... */
+    }
+    /* ...existing code... */
+}

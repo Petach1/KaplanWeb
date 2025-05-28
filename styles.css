@@ -1609,18 +1609,12 @@ nav.scrolled + header .header-logo {
     }
 }
 @media (max-width: 900px) {
-    nav ul {
-        text-align: center !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-    nav ul li {
-        text-align: center !important;
-    }
     nav ul li a {
-        text-align: center !important;
-        justify-content: center !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
+        display: block;
+        padding: 18px 0 18px 24px; /* přidá odsazení zleva */
+        font-size: 1.15em;
+        color: #fff;
+        background: none;
+        text-align: center; /* zarovná text doleva, můžeš změnit na center pokud chceš na střed */
     }
 }

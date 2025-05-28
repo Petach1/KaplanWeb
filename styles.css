@@ -1638,3 +1638,10 @@ nav.scrolled + header .header-logo {
     }
     /* ...existing code... */
 }
+
+a[href^="tel"], a[href^="tel"]:visited {
+    color: #fff !important;
+    text-decoration: none !important;
+    pointer-events: none; /* Zabrání kliknutí na odkaz */
+    cursor: default;
+}

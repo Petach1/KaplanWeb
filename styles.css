@@ -1356,11 +1356,11 @@ nav.scrolled + header .header-logo {
         height: auto;
         min-height: 70px;
         position: relative;
+        padding-right: 16px !important; /* Přidá odsazení vpravo */
     }
     .hamburger {
         display: flex;
-        margin-left: 0 !important;
-        margin-right: 28px !important; /* Větší odsazení od pravého okraje */
+        margin-right: 0 !important; /* Zruší velké odsazení */
     }
     nav {
         padding-right: 0 !important; /* Zruší případný padding vpravo */

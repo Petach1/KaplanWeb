@@ -190,30 +190,21 @@ nav a {
     height: 100%;
     z-index: 0;
     pointer-events: none;
-    background: 
-        
-        url('https://github.com/Petach1/KaplanWeb/blob/main/Vice1.webp?raw=true'),
-        url('https://github.com/Petach1/KaplanWeb/blob/main/Vice2.webp?raw=true'),
-        url('https://github.com/Petach1/KaplanWeb/blob/main/Vice3.webp?raw=true');
-    background-repeat: repeat-x;
-    background-size: 33.33vw 100%;
-    background-position-x: 0vw, 33.33vw, 66.66vw, 100vw, 133.33vw, 166.66vw;
-    animation: heroSlideLinear 36s linear infinite;
-    filter: grayscale(0.3) brightness(0.6) blur(6px);
+    background: url('https://github.com/Petach1/KaplanWeb/blob/main/IMG_8328.webp?raw=true') repeat-x;
+    background-size: auto 100%;
+    animation: panoramaMove 60s linear infinite;
+    filter: grayscale(0.1) brightness(0.6) blur(4px);
 }
-@keyframes heroSlideLinear {
-    0% {
-        background-position-x: 0vw, 33.33vw, 66.66vw, 100vw, 133.33vw, 166.66vw;
-    }
-    100% {
-        background-position-x: -200vw, -166.66vw, -133.33vw, -100vw, -66.66vw, -33.33vw;
-    }
+
+@keyframes panoramaMove {
+    0% { background-position-x: 0; }
+    100% { background-position-x: -100vw; }
 }
 .hero::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(30,30,30,0.68);
+    background: rgba(73, 71, 71, 0.68);
     z-index: 1;
     pointer-events: none;
 }

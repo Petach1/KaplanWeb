@@ -131,7 +131,7 @@ nav.scrolled ul {
 /* Položky menu - vždy viditelné */
 nav ul li {
     opacity: 1; /* Položky jsou vždy viditelné */
-    transform: translateX(0); /
+    transform: translateX(0); /* Opraveno: odstraněno lomítko */
     transition: none; /* Žádný přechod na začátku */
 }
 

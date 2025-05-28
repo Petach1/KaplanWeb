@@ -131,7 +131,7 @@ nav.scrolled ul {
 /* Položky menu - vždy viditelné */
 nav ul li {
     opacity: 1; /* Položky jsou vždy viditelné */
-    transform: translateX(0);
+    transform: translateX(0); /
     transition: none; /* Žádný přechod na začátku */
 }
 
@@ -512,6 +512,20 @@ nav a {
     }
 }
 
+/* Montérské služby - zarovnání na střed */
+@media (max-width: 768px) {
+    .service-category:first-of-type .service-item {
+        flex: 1 1 100%; /* Jeden sloupec na menších obrazovkách */
+        text-align: center; /* Přidáno: zarovná text na střed */
+        margin-left: auto;  /* Přidáno: vystředí kartu */
+        margin-right: auto; /* Přidáno: vystředí kartu */
+    }
+    .service-category:first-of-type .service-list {
+        justify-content: center; /* Přidáno: vystředí položky */
+        align-items: center;     /* Přidáno: vystředí položky vertikálně */
+    }
+}
+
 .map-container {
     margin-top: 20px;
     border-radius: 10px;
@@ -844,6 +858,13 @@ nav.scrolled + header .header-logo {
 @media (max-width: 768px) {
     .service-category:first-of-type .service-item {
         flex: 1 1 100%; /* Jeden sloupec na menších obrazovkách */
+        text-align: center; /* Přidáno: zarovná text na střed */
+        margin-left: auto;  /* Přidáno: vystředí kartu */
+        margin-right: auto; /* Přidáno: vystředí kartu */
+    }
+    .service-category:first-of-type .service-list {
+        justify-content: center; /* Přidáno: vystředí položky */
+        align-items: center;     /* Přidáno: vystředí položky vertikálně */
     }
 }
 

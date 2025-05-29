@@ -304,6 +304,55 @@ nav a {
     margin-bottom: 1em;
 }
 
+/* Responzivní úpravy pro sekci O nás na mobilních zařízeních */
+@media (max-width: 768px) {
+    .about {
+        padding: 40px 15px;
+    }
+    
+    .about-text {
+        flex: 1 1 100%;
+        text-align: center; /* Zarovnání na střed pro mobilní zařízení */
+        font-size: 1em; /* Menší font na mobilních zařízeních */
+        padding: 0 15px; /* Menší odsazení na mobilech */
+        line-height: 1.6; /* Menší řádkování */
+    }
+    
+    .about-text ul {
+        text-align: left; /* Seznam zarovnáme vlevo i na mobilech */
+        margin: 1em auto; /* Automatické horizontální okraje pro vystředění seznamu */
+        max-width: 80%; /* Omezení maximální šířky seznamu */
+        display: inline-block; /* Umožní centrování seznamu */
+    }
+    
+    .about h2 {
+        font-size: 1.6em; /* Menší nadpis na mobilech */
+        margin-bottom: 15px;
+    }
+}
+
+/* Ještě specifičtější úpravy pro velmi malé obrazovky */
+@media (max-width: 480px) {
+    .about {
+        padding: 30px 10px;
+    }
+    
+    .about-text {
+        padding: 0 10px;
+        font-size: 0.95em;
+    }
+    
+    .about-text ul {
+        max-width: 90%; /* Širší seznam na velmi malých obrazovkách */
+        font-size: 1em;
+        padding-left: 20px; /* Přidáme odsazení zleva pro lepší čitelnost */
+    }
+    
+    .about-text ul li {
+        margin-bottom: 0.4em; /* Menší mezery mezi položkami seznamu */
+    }
+}
+
 .carousel {
     position: relative;
     overflow: hidden;
@@ -446,86 +495,109 @@ nav a {
 .service-item.prodejna {
     display: flex;
     flex-wrap: wrap;
+    align-items: stretch;
     gap: 20px;
-    align-items: stretch; /* změna z flex-start na stretch */
+    padding: 25px;
 }
 
 .service-item.prodejna .service-text {
-    flex: 1 1 50%;
+    flex: 1 1 300px;
     text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* zarovná text vertikálně na střed */
-    min-height: 320px; /* Přidáno: zajistí minimální výšku pro text i obrázek */
+    margin-bottom: 15px;
 }
 
 .service-item.prodejna .service-image {
-    flex: 1 1 50%;        /* Obrázek zabere více šířky */
-    max-width: 500px;     /* Zvýší maximální šířku obrázku */
-    min-width: 320px;     /* Zajistí minimální šířku obrázku */
+    flex: 1 1 300px;
+    min-width: 250px;
     display: flex;
-    align-items: stretch;
+    align-items: center;
     justify-content: center;
+    margin: 0 auto;
 }
 
 .service-item.prodejna .service-image img {
     width: 100%;
-    height: 100%;
-    min-height: 320px;
-    max-height: 420px;
+    height: auto;
+    max-height: 350px;
     object-fit: cover;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    display: block;
 }
 
-/* Prodejna - mapa na celou šířku vedle textu a obrázku */
 .service-item.prodejna .map-container {
     flex: 1 1 100%;
-    max-width: 100%;
+    width: 100%;
     margin-top: 20px;
     border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-    align-self: stretch;
 }
 
-.service-item.prodejna .map-container iframe {
-    width: 100%;
-    height: 320px;
-    min-height: 220px;
-    border: 0;
-    display: block;
-}
-
-/* Responzivita */
+/* Responzivní úpravy pro mobilní zařízení */
 @media (max-width: 768px) {
-    .service-list {
-        flex-direction: column;
-    }
-
-    .service-item {
-        flex: 1 1 100%;
-    }
-
     .service-item.prodejna {
-        flex-direction: column;
-        align-items: center;
+        padding: 15px;
     }
-
+    
     .service-item.prodejna .service-text {
         text-align: center;
-        min-height: unset;
+        flex: 1 1 100%;
+        order: 1;
     }
-
+    
     .service-item.prodejna .service-image {
+        flex: 1 1 100%;
+        order: 2;
         max-width: 100%;
-        min-height: unset;
+        margin: 0 auto 15px auto;
     }
-
+    
     .service-item.prodejna .service-image img {
-        min-height: 180px;
-        max-height: 300px;
+        max-width: 100%;
+        height: auto;
+        max-height: 250px;
+    }
+    
+    .service-item.prodejna .map-container {
+        order: 3;
+        margin-top: 15px;
+        height: 250px;
+    }
+    
+    .service-item.prodejna .map-container iframe {
+        height: 250px;
+    }
+    
+    /* Oprava textu v kartě prodejny */
+    .service-item.prodejna .service-text p,
+    .service-item.prodejna .service-text ul {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .service-item.prodejna .service-text ul.opening-hours {
+        padding: 0;
+        list-style: none;
+        display: inline-block;
+    }
+}
+
+/* Dodatečné úpravy pro velmi malé obrazovky */
+@media (max-width: 480px) {
+    .service-item.prodejna {
+        padding: 12px;
+        margin: 0 auto;
+        max-width: 95%;
+    }
+    
+    .service-item.prodejna .service-image img {
+        max-height: 200px;
+    }
+    
+    .service-item.prodejna .map-container {
+        height: 200px;
+    }
+    
+    .service-item.prodejna .map-container iframe {
+        height: 200px;
     }
 }
 
@@ -1662,4 +1734,55 @@ nav.scrolled + header .header-logo {
 body {
     overflow-y: auto; /* Zajistí správné fungování scrollování */
     overscroll-behavior-y: none; /* Zabrání přesahování scrollu na některých prohlížečích */
+}
+
+/* Vylepšení animace loga a navigace pro mobilní zařízení */
+
+/* Navigace - oprava pro mobilní zařízení */
+@media (max-width: 900px) {
+    /* Vždy viditelná navigace při scrollování */
+    nav {
+        position: fixed; /* Změna ze sticky na fixed pro lepší ovládání */
+        width: 100%;
+        top: 0;
+        left: 0;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        padding: 10px 20px;
+        box-sizing: border-box;
+    }
+    
+    /* Logo v navigaci - vždy viditelné na mobilech */
+    .nav-logo {
+        opacity: 1; /* Vždy viditelné */
+        pointer-events: auto;
+        transform: translateY(0);
+        width: 40px; /* Menší na mobilech */
+        height: auto;
+    }
+    
+    /* Skryjeme logo jen při úplném začátku stránky */
+    body:not(.scrolled) nav .nav-logo {
+        opacity: 0;
+    }
+    
+    /* Přidáme trochu místa pro obsah pod fixní navigací */
+    body {
+        padding-top: 70px; /* Výška navigace */
+    }
+    
+    /* Vylepšené skrývání navigace při scrollování dolů */
+    nav.hide-on-scroll {
+        transform: translateY(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    /* Zobrazíme navigaci ihned při scrollování nahoru */
+    nav:not(.hide-on-scroll) {
+        transform: translateY(0);
+    }
+
+    /* Odstraníme efekt posunu menu doprava při scrollování - působí rušivě na mobilech */
+    nav.scrolled ul {
+        transform: translateX(0px);
+    }
 }

@@ -253,24 +253,48 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+// Vylepšená logika pro navigaci a scrollování
+
 document.addEventListener("DOMContentLoaded", function() {
     let lastScroll = window.scrollY;
     const nav = document.querySelector("nav");
+    const headerHeight = document.querySelector("header").offsetHeight;
+    const body = document.body;
+    
+    // Počáteční kontrola, jestli jsme scrollnutí
+    if (window.scrollY > 10) {
+        nav.classList.add("scrolled");
+        body.classList.add("scrolled");
+    }
 
+    // Vylepšená funkce pro detekci směru scrollování
     window.addEventListener("scroll", function() {
         const currentScroll = window.scrollY;
+        
+        // Přidáme třídu scrolled, když jsme scrollnutí
+        if (currentScroll > 10) {
+            nav.classList.add("scrolled");
+            body.classList.add("scrolled");
+        } else {
+            nav.classList.remove("scrolled");
+            body.classList.remove("scrolled");
+        }
+        
+        // Na mobilních zařízeních ovládáme schovávání navigace
         if (window.innerWidth <= 900) {
-            if (currentScroll > lastScroll && currentScroll > 60) {
+            if (currentScroll > lastScroll && currentScroll > headerHeight) {
                 // Scroll dolů – schovej nav
                 nav.classList.add("hide-on-scroll");
             } else {
                 // Scroll nahoru – ukaž nav
                 nav.classList.remove("hide-on-scroll");
             }
-            lastScroll = currentScroll;
         } else {
+            // Na desktopu vždy zobrazujeme navigaci
             nav.classList.remove("hide-on-scroll");
         }
+        
+        lastScroll = currentScroll;
     });
 });
 

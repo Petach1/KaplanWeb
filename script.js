@@ -313,7 +313,10 @@ document.addEventListener("DOMContentLoaded", function() {
     // Zkontrolovat, jestli uživatel už přijal cookies
     const cookiesAccepted = localStorage.getItem("cookiesAccepted");
     
-    if (!cookiesAccepted) {
+    // Pokud již byly cookies přijaty, inicializujeme Google Analytics
+    if (cookiesAccepted === "true") {
+        loadGoogleAnalytics();
+    } else {
         // Zobrazí oznámení po krátké prodlevě
         setTimeout(function() {
             cookieNotice.style.display = "block";
@@ -332,7 +335,8 @@ document.addEventListener("DOMContentLoaded", function() {
             cookieNotice.style.display = "none";
         }, 300);
         
-        // Zde můžete přidat kód pro načtení analytických služeb, reklam atd.
+        // Načteme Google Analytics po souhlasu
+        loadGoogleAnalytics();
     });
     
     // Akce po kliknutí na tlačítko "Odmítnout"
@@ -343,8 +347,7 @@ document.addEventListener("DOMContentLoaded", function() {
             cookieNotice.style.display = "none";
         }, 300);
         
-        // Zde můžete přidat kód pro odmítnutí cookies
-        // Například zakázání Google Analytics, atd.
+        // Odmítnuto - GA nebude načteno
     });
     
     // Akce po kliknutí na "Více informací"
@@ -352,10 +355,21 @@ document.addEventListener("DOMContentLoaded", function() {
         e.preventDefault();
         // Zde můžete přidat kód pro zobrazení podrobnějších informací o cookies
         alert("Na našich stránkách používáme cookies pro zlepšení funkcí webu, analýzu návštěvnosti a personalizaci obsahu. Používáme cookies nezbytné pro fungování webu, analytické cookies pro zlepšování obsahu a technická cookies třetích stran (Google Maps). Detailní informace o cookies naleznete v našich zásadách ochrany osobních údajů.");
-        
-        // Alternativa: přesměrování na stránku s GDPR informacemi
-        // window.location.href = "gdpr.html";
     });
+    
+    // Funkce pro načtení Google Analytics
+    function loadGoogleAnalytics() {
+        // Vytvoříme script tag pro GA
+        const gaScript = document.createElement('script');
+        gaScript.async = true;
+        gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-PZ8Z3KS86C";
+        document.head.appendChild(gaScript);
+        
+        // Inicializujeme Google Analytics
+        if (typeof initializeGoogleAnalytics === 'function') {
+            initializeGoogleAnalytics();
+        }
+    }
 });
 
 

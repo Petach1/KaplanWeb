@@ -34,6 +34,17 @@ header {
     padding: 0 20px;
     height: 100px; /* Nastavte výšku hlavičky podle potřeby */
     gap: 20px; /* Mezera mezi logem a textem */
+    width: 100%;
+    max-width: none; /* Zruší omezení maximální šířky */
+    margin: 0; /* Zruší automatické centrování */
+    padding: 0 5vw; /* Odsazení v procentech šířky okna (5% z každé strany) */
+    box-sizing: border-box;
+}
+
+header .container {
+    width: 100%;
+    max-width: none;
+    padding: 0;
 }
 
 .header-logo {
@@ -605,6 +616,7 @@ nav a {
     font-size: 0.9em;
     align-self: center; /* Vertikální zarovnání kontaktních informací */
     color: #f4f4f4; /* Světlejší barva pro kontrast s pozadím */
+    padding-right: 10px; /* Malé odsazení od pravého okraje */
 }
 
 .contact-info p {
@@ -1621,27 +1633,4 @@ nav.scrolled + header .header-logo {
         background: none;
         text-align: center; /* zarovná text doleva, můžeš změnit na center pokud chceš na střed */
     }
-}
-
-/* Oprava: produkty v sortimentu - body v .brands-catalog ul zarovnat doleva */
-.brands-catalog ul {
-    text-align: left !important;
-    margin-left: 1.2em;
-    padding-left: 1.2em;
-}
-
-@media (max-width: 600px) {
-    /* ...existing code... */
-    .brand-info ul {
-        text-align: left !important;
-        /* ...existing code... */
-    }
-    /* ...existing code... */
-}
-
-a[href^="tel"], a[href^="tel"]:visited {
-    color: #fff !important;
-    text-decoration: none !important;
-    pointer-events: none; /* Zabrání kliknutí na odkaz */
-    cursor: default;
 }

@@ -9,6 +9,8 @@ body {
     padding: 0;
     background-color: #ececec; /* Jemně tmavší šedá */
     color: #333;
+    overflow-y: auto; /* Zajistí správné fungování scrollování */
+    overscroll-behavior-y: none; /* Zabrání přesahování scrollu na některých prohlížečích */
 }
 
 .container {
@@ -1633,4 +1635,31 @@ nav.scrolled + header .header-logo {
         background: none;
         text-align: center; /* zarovná text doleva, můžeš změnit na center pokud chceš na střed */
     }
+}
+
+/* Úprava pro kontakty v hlavičce - bílá barva a podtržení */
+.contact-info a {
+    color: #fff; /* Bílá barva textu */
+    text-decoration: underline; /* Podtržení odkazů */
+}
+
+/* Resetování výchozího stylu iOS pro telefonní odkazy */
+.contact-info a[href^="tel:"] {
+    color: #fff !important; /* Vynucení bílé barvy i pro telefonní odkazy */
+    text-decoration: underline; /* Podtržení telefonních čísel */
+    -webkit-text-fill-color: #fff; /* Speciální vlastnost pro iOS Safari */
+}
+
+/* Udržení bílé barvy odkazů po návštěvě */
+.contact-info a:visited,
+.contact-info a:hover,
+.contact-info a:active {
+    color: #fff;
+    -webkit-text-fill-color: #fff;
+}
+
+/* Pro plynulejší scrollování a lepší fungování odpružení */
+body {
+    overflow-y: auto; /* Zajistí správné fungování scrollování */
+    overscroll-behavior-y: none; /* Zabrání přesahování scrollu na některých prohlížečích */
 }

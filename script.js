@@ -303,5 +303,60 @@ window.addEventListener("pageshow", function() {
     window.scrollTo(0, 0);
 });
 
+// Správa GDPR souhlasů
+document.addEventListener("DOMContentLoaded", function() {
+    const cookieNotice = document.getElementById("cookie-notice");
+    const acceptButton = document.getElementById("cookie-accept");
+    const declineButton = document.getElementById("cookie-decline");
+    const moreInfoButton = document.getElementById("cookie-more");
+    
+    // Zkontrolovat, jestli uživatel už přijal cookies
+    const cookiesAccepted = localStorage.getItem("cookiesAccepted");
+    
+    if (!cookiesAccepted) {
+        // Zobrazí oznámení po krátké prodlevě
+        setTimeout(function() {
+            cookieNotice.style.display = "block";
+            // Animace pro plynulé zobrazení
+            setTimeout(function() {
+                cookieNotice.style.opacity = "1";
+            }, 10);
+        }, 1000);
+    }
+    
+    // Akce po kliknutí na tlačítko "Souhlasím"
+    acceptButton.addEventListener("click", function() {
+        localStorage.setItem("cookiesAccepted", "true");
+        cookieNotice.style.opacity = "0";
+        setTimeout(function() {
+            cookieNotice.style.display = "none";
+        }, 300);
+        
+        // Zde můžete přidat kód pro načtení analytických služeb, reklam atd.
+    });
+    
+    // Akce po kliknutí na tlačítko "Odmítnout"
+    declineButton.addEventListener("click", function() {
+        localStorage.setItem("cookiesAccepted", "false");
+        cookieNotice.style.opacity = "0";
+        setTimeout(function() {
+            cookieNotice.style.display = "none";
+        }, 300);
+        
+        // Zde můžete přidat kód pro odmítnutí cookies
+        // Například zakázání Google Analytics, atd.
+    });
+    
+    // Akce po kliknutí na "Více informací"
+    moreInfoButton.addEventListener("click", function(e) {
+        e.preventDefault();
+        // Zde můžete přidat kód pro zobrazení podrobnějších informací o cookies
+        alert("Na našich stránkách používáme cookies pro zlepšení funkcí webu, analýzu návštěvnosti a personalizaci obsahu. Používáme cookies nezbytné pro fungování webu, analytické cookies pro zlepšování obsahu a technická cookies třetích stran (Google Maps). Detailní informace o cookies naleznete v našich zásadách ochrany osobních údajů.");
+        
+        // Alternativa: přesměrování na stránku s GDPR informacemi
+        // window.location.href = "gdpr.html";
+    });
+});
+
 
 

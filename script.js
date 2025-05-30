@@ -1,4 +1,44 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // 1. Lazy loading prvků
+    initLazyLoading();
+    
+    // 2. Nastavení navigace a scrollování
+    initNavigation();
+    
+    // 3. Nastavení služeb a jejich interaktivních prvků
+    initServiceItems();
+    
+    // 4. Logo kliknutí pro návrat na začátek
+    initLogoClick();
+    
+    // 5. Aktualizace roku v patičce
+    updateCopyrightYear();
+    
+    // 6. Inicializace carousel
+    initCarousel();
+    
+    // 7. Inicializace přepínačů obsahu
+    initContentToggles();
+    
+    // 8. Tlačítka pro zobrazení detailů
+    initDetailButtons();
+    
+    // 9. Mobilní menu (hamburger)
+    initMobileMenu();
+    
+    // 10. GDPR a cookies
+    initGDPRConsent();
+});
+
+// Vynutí scroll na začátek i při reloadu (F5, Ctrl+R, Cmd+R)
+window.addEventListener("pageshow", function() {
+    window.scrollTo(0, 0);
+});
+
+// === Jednotlivé funkce ===
+
+// 1. Lazy loading
+function initLazyLoading() {
     const lazyElements = document.querySelectorAll(".lazy");
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -9,37 +49,55 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
     lazyElements.forEach((el) => observer.observe(el));
-});
+}
 
-document.addEventListener("DOMContentLoaded", () => {
-    const lazySections = document.querySelectorAll(".lazy");
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visible"); // Přidá třídu `visible`
-                observer.unobserve(entry.target); // Přestane sledovat prvek
-            }
-        });
-    });
-
-    lazySections.forEach((section) => observer.observe(section));
-});
-
-document.addEventListener("DOMContentLoaded", () => {
+// 2. Navigace a scrollování
+function initNavigation() {
     const nav = document.querySelector("nav");
     const header = document.querySelector("header");
-
+    const body = document.body;
+    let lastScroll = window.scrollY;
+    const headerHeight = header.offsetHeight;
+    
+    // Počáteční kontrola, jestli jsme scrollnutí
+    if (window.scrollY > 10) {
+        nav.classList.add("scrolled");
+        body.classList.add("scrolled");
+    }
+    
+    // Event listener pro scroll
     window.addEventListener("scroll", () => {
-        if (window.scrollY > header.offsetHeight) {
-            nav.classList.add("scrolled"); // Přidá třídu scrolled
+        const currentScroll = window.scrollY;
+        
+        // Přidáme třídu scrolled, když jsme scrollnutí
+        if (currentScroll > 10) {
+            nav.classList.add("scrolled");
+            body.classList.add("scrolled");
         } else {
-            nav.classList.remove("scrolled"); // Odebere třídu scrolled
+            nav.classList.remove("scrolled");
+            body.classList.remove("scrolled");
         }
+        
+        // Na mobilních zařízeních ovládáme schovávání navigace
+        if (window.innerWidth <= 900) {
+            if (currentScroll > lastScroll && currentScroll > headerHeight) {
+                // Scroll dolů – schovej nav
+                nav.classList.add("hide-on-scroll");
+            } else {
+                // Scroll nahoru – ukaž nav
+                nav.classList.remove("hide-on-scroll");
+            }
+        } else {
+            // Na desktopu vždy zobrazujeme navigaci
+            nav.classList.remove("hide-on-scroll");
+        }
+        
+        lastScroll = currentScroll;
     });
-});
+}
 
-document.addEventListener("DOMContentLoaded", () => {
+// 3. Služby a jejich interaktivní prvky
+function initServiceItems() {
     const serviceItems = document.querySelectorAll(".service-item");
 
     serviceItems.forEach((item) => {
@@ -47,20 +105,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
         item.addEventListener("mouseenter", () => {
             if (!serviceDetails.innerHTML.trim()) {
-                if (item.querySelector("h3").textContent === "Instalace vodovodních systémů") {
+                const title = item.querySelector("h3").textContent;
+                
+                // Dynamické vkládání obsahu podle nadpisu
+                if (title === "Instalace vodovodních systémů") {
                     serviceDetails.innerHTML = `
                         <p><strong>Telefon:</strong> +420 736 763 109</p>
                     `;
-                } else if (item.querySelector("h3").textContent === "Čištění odpadů") {
+                } else if (title === "Čištění odpadů") {
                     serviceDetails.innerHTML = `
                         <p><strong>Telefon:</strong> +420 602 488 860</p>
                         <p><strong>Web:</strong> <a href="https://www.vvicz.eu" target="_blank">https://www.vvicz.eu</a></p>
                     `;
-                } else if (item.querySelector("h3").textContent === "Montáž topných systémů") {
+                } else if (title === "Montáž topných systémů") {
                     serviceDetails.innerHTML = `
                         <p><strong>Telefon:</strong> +420 736 763 109</p>
                     `;
-                } else if (item.querySelector("h3").textContent === "Prodejna") {
+                } else if (title === "Prodejna") {
                     serviceDetails.innerHTML = `
                         <p><strong>Telefon:</strong> +420 603 595 869</p>
                     `;
@@ -69,6 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // Správa animací pro service items
     serviceItems.forEach((item) => {
         item.addEventListener("mouseenter", () => {
             serviceItems.forEach((otherItem) => {
@@ -86,9 +148,10 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     });
-});
+}
 
-document.addEventListener("DOMContentLoaded", () => {
+// 4. Logo kliknutí
+function initLogoClick() {
     const logoLink = document.querySelector(".nav-logo").parentElement;
 
     logoLink.addEventListener("click", (e) => {
@@ -96,16 +159,20 @@ document.addEventListener("DOMContentLoaded", () => {
         // Načte stránku bez hash/search a vynutí reload odshora (nepoužije cache ani pozici)
         window.location.replace(window.location.origin + window.location.pathname);
     });
-});
+}
 
-document.addEventListener("DOMContentLoaded", () => {
+// 5. Copyright rok
+function updateCopyrightYear() {
     const footer = document.querySelector("footer p");
     const currentYear = new Date().getFullYear();
     footer.innerHTML = `&copy; ${currentYear} Kaplan a syn s.r.o. Všechna práva vyhrazena.`;
-});
+}
 
-document.addEventListener("DOMContentLoaded", () => {
+// 6. Carousel / Slideshow
+function initCarousel() {
     const carouselImages = document.querySelector(".carousel-images");
+    if (!carouselImages) return; // Kontrola existence prvku
+    
     const images = document.querySelectorAll(".carousel-images img");
     const dotsContainer = document.querySelector(".carousel-dots");
     const imageCount = images.length;
@@ -191,9 +258,10 @@ document.addEventListener("DOMContentLoaded", () => {
     carouselImages.addEventListener("transitionend", updateDots);
 
     startCarousel();
-});
+}
 
-document.addEventListener("DOMContentLoaded", () => {
+// 7. Přepínače obsahu
+function initContentToggles() {
     const cleaningToggle = document.querySelector('.cleaning-toggle');
     if (cleaningToggle) {
         const header = cleaningToggle.querySelector('.cleaning-header');
@@ -205,9 +273,10 @@ document.addEventListener("DOMContentLoaded", () => {
             arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(90deg)';
         });
     }
-});
+}
 
-document.addEventListener("DOMContentLoaded", () => {
+// 8. Tlačítka pro zobrazení detailů
+function initDetailButtons() {
     document.querySelectorAll('.show-details-btn').forEach(btn => {
         btn.addEventListener('click', function (e) {
             e.preventDefault();
@@ -236,76 +305,30 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
-});
+}
 
-document.addEventListener("DOMContentLoaded", function() {
+// 9. Mobilní menu
+function initMobileMenu() {
     const hamburger = document.querySelector('.hamburger');
     const navUl = document.querySelector('nav ul');
+    
     hamburger.addEventListener('click', function() {
         navUl.classList.toggle('open');
-
     });
+    
     // Zavři menu po kliknutí na odkaz (na mobilu)
     navUl.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             navUl.classList.remove('open');
         });
     });
-});
+}
 
-// Vylepšená logika pro navigaci a scrollování
-
-document.addEventListener("DOMContentLoaded", function() {
-    let lastScroll = window.scrollY;
-    const nav = document.querySelector("nav");
-    const headerHeight = document.querySelector("header").offsetHeight;
-    const body = document.body;
-    
-    // Počáteční kontrola, jestli jsme scrollnutí
-    if (window.scrollY > 10) {
-        nav.classList.add("scrolled");
-        body.classList.add("scrolled");
-    }
-
-    // Vylepšená funkce pro detekci směru scrollování
-    window.addEventListener("scroll", function() {
-        const currentScroll = window.scrollY;
-        
-        // Přidáme třídu scrolled, když jsme scrollnutí
-        if (currentScroll > 10) {
-            nav.classList.add("scrolled");
-            body.classList.add("scrolled");
-        } else {
-            nav.classList.remove("scrolled");
-            body.classList.remove("scrolled");
-        }
-        
-        // Na mobilních zařízeních ovládáme schovávání navigace
-        if (window.innerWidth <= 900) {
-            if (currentScroll > lastScroll && currentScroll > headerHeight) {
-                // Scroll dolů – schovej nav
-                nav.classList.add("hide-on-scroll");
-            } else {
-                // Scroll nahoru – ukaž nav
-                nav.classList.remove("hide-on-scroll");
-            }
-        } else {
-            // Na desktopu vždy zobrazujeme navigaci
-            nav.classList.remove("hide-on-scroll");
-        }
-        
-        lastScroll = currentScroll;
-    });
-});
-
-// Vynutí scroll na začátek i při reloadu (F5, Ctrl+R, Cmd+R)
-window.addEventListener("pageshow", function() {
-    window.scrollTo(0, 0);
-});
-
-// Správa GDPR souhlasů
-document.addEventListener("DOMContentLoaded", function() {
+// 10. GDPR a cookies
+function initGDPRConsent() {
     const cookieNotice = document.getElementById("cookie-notice");
+    if (!cookieNotice) return; // Kontrola existence prvku
+    
     const acceptButton = document.getElementById("cookie-accept");
     const declineButton = document.getElementById("cookie-decline");
     const moreInfoButton = document.getElementById("cookie-more");
@@ -353,24 +376,23 @@ document.addEventListener("DOMContentLoaded", function() {
     // Akce po kliknutí na "Více informací"
     moreInfoButton.addEventListener("click", function(e) {
         e.preventDefault();
-        // Zde můžete přidat kód pro zobrazení podrobnějších informací o cookies
         alert("Na našich stránkách používáme cookies pro zlepšení funkcí webu, analýzu návštěvnosti a personalizaci obsahu. Používáme cookies nezbytné pro fungování webu, analytické cookies pro zlepšování obsahu a technická cookies třetích stran (Google Maps). Detailní informace o cookies naleznete v našich zásadách ochrany osobních údajů.");
     });
+}
+
+// Funkce pro načtení Google Analytics
+function loadGoogleAnalytics() {
+    // Vytvoříme script tag pro GA
+    const gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-PZ8Z3KS86C";
+    document.head.appendChild(gaScript);
     
-    // Funkce pro načtení Google Analytics
-    function loadGoogleAnalytics() {
-        // Vytvoříme script tag pro GA
-        const gaScript = document.createElement('script');
-        gaScript.async = true;
-        gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-PZ8Z3KS86C";
-        document.head.appendChild(gaScript);
-        
-        // Inicializujeme Google Analytics
-        if (typeof initializeGoogleAnalytics === 'function') {
-            initializeGoogleAnalytics();
-        }
+    // Inicializujeme Google Analytics
+    if (typeof initializeGoogleAnalytics === 'function') {
+        initializeGoogleAnalytics();
     }
-});
+}
 
 
 

@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 2. Scrollovací magie pro nav - protože první dojem je všechno
     initNavigation();
     
-    // 3. Služby a jejich vibe - hover efekty
+    // 3. Služby a jejich vibe - hover efekty FTW
     initServiceItems();
     
     // 4. Logo click = instant refresh - žádné historyky
@@ -26,8 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // 9. Hamburger menu - protože na mobilu musí být všechno easy
     initMobileMenu();
     
-    // 10. GDPR cookies - protože EU be like "soukromí!!!!"
+    // 10. GDPR cookies - protože EU be like "soukromí!!!1!"
     initGDPRConsent();
+    
+    // 11. Zvýraznění značek v katalogu - protože cool URL linky ftw
+    initBrandHighlight();
 });
 
 // Scrollujeme nahoru when refresh - no cap, scrollování od půlky stránky je sus
@@ -378,6 +381,45 @@ function initGDPRConsent() {
         e.preventDefault();
         alert("Na našich stránkách používáme cookies pro zlepšení funkcí webu, analýzu návštěvnosti a personalizaci obsahu. Používáme cookies nezbytné pro fungování webu, analytické cookies pro zlepšování obsahu a technická cookies třetích stran (Google Maps). Detailní informace o cookies naleznete v našich zásadách ochrany osobních údajů.");
     });
+}
+
+// 11. Zvýraznění značek v katalogu - protože cool URL linky ftw
+function initBrandHighlight() {
+    const brandLinks = document.querySelectorAll('.brand-link');
+
+    brandLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+
+            // Scroll to the target element
+            document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+
+            // Update the URL hash without jumping
+            history.pushState(null, null, '#' + targetId);
+        });
+    });
+}
+
+// Přidat na konec script.js - zvýraznění značek podle URL hash
+
+// 11. Zvýraznění značek v katalogu - protože cool URL linky ftw
+function initBrandHighlight() {
+    // Zjisti, jestli je v URL hash na značku (např. #geberit)
+    const hash = window.location.hash.replace('#', '');
+    if (hash) {
+        const el = document.getElementById(hash);
+        if (el && el.classList.contains('brand-card')) {
+            // Odeber zvýraznění ze všech značek
+            document.querySelectorAll('.brand-card.highlight').forEach(card => card.classList.remove('highlight'));
+            // Přidej zvýraznění na aktuální značku
+            el.classList.add('highlight');
+            // Posuň značku do středu obrazovky - scroll magic
+            setTimeout(() => {
+                el.scrollIntoView({behavior: "smooth", block: "center"});
+            }, 100);
+        }
+    }
 }
 
 // Funkce pro načtení Google Analytics - let the tracking begin

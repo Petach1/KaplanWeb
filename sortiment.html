@@ -392,24 +392,5 @@
             <p>&copy; 2025 Kaplan a syn s.r.o. Všechna práva vyhrazena.</p>
         </div>
     </footer>
-    <script>
-document.addEventListener("DOMContentLoaded", function() {
-    // Zjisti, jestli je v URL hash na značku (např. #geberit)
-    const hash = window.location.hash.replace('#', '');
-    if (hash) {
-        const el = document.getElementById(hash);
-        if (el && el.classList.contains('brand-card')) {
-            // Odeber zvýraznění ze všech značek
-            document.querySelectorAll('.brand-card.highlight').forEach(card => card.classList.remove('highlight'));
-            // Přidej zvýraznění na aktuální značku
-            el.classList.add('highlight');
-            // Posuň značku do středu obrazovky
-            setTimeout(() => {
-                el.scrollIntoView({behavior: "smooth", block: "center"});
-            }, 100);
-        }
-    }
-});
-</script>
 </body>
 </html>

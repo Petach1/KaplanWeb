@@ -1,57 +1,57 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Lazy loading prvků
+    // 1. Lazy loading prvků - protože kdo má čas čekat na načítání všeho najednou, lol
     initLazyLoading();
     
-    // 2. Nastavení navigace a scrollování
+    // 2. Scrollovací magie pro nav - protože první dojem je všechno
     initNavigation();
     
-    // 3. Nastavení služeb a jejich interaktivních prvků
+    // 3. Služby a jejich vibe - hover efekty
     initServiceItems();
     
-    // 4. Logo kliknutí pro návrat na začátek
+    // 4. Logo click = instant refresh - žádné historyky
     initLogoClick();
     
-    // 5. Aktualizace roku v patičce
+    // 5. Aktualizace roku v patičce - aby to nevypadalo jako web z pravěku
     updateCopyrightYear();
     
-    // 6. Inicializace carousel
+    // 6. Carousel vibes - protože statické obrázky jsou nuda
     initCarousel();
     
-    // 7. Inicializace přepínačů obsahu
+    // 7. Toggle stuff - skrýt/zobrazit content, protože méně je více
     initContentToggles();
     
-    // 8. Tlačítka pro zobrazení detailů
+    // 8. Detail tlačítka - pro ty, kdo chtějí vědět víc (stalkeři)
     initDetailButtons();
     
-    // 9. Mobilní menu (hamburger)
+    // 9. Hamburger menu - protože na mobilu musí být všechno easy
     initMobileMenu();
     
-    // 10. GDPR a cookies
+    // 10. GDPR cookies - protože EU be like "soukromí!!!!"
     initGDPRConsent();
 });
 
-// Vynutí scroll na začátek i při reloadu (F5, Ctrl+R, Cmd+R)
+// Scrollujeme nahoru when refresh - no cap, scrollování od půlky stránky je sus
 window.addEventListener("pageshow", function() {
     window.scrollTo(0, 0);
 });
 
-// === Jednotlivé funkce ===
+// === Jednotlivé funkce – vibe check ===
 
-// 1. Lazy loading
+// 1. Lazy loading - načítání obsahu až když je potřeba, peak efektivita
 function initLazyLoading() {
     const lazyElements = document.querySelectorAll(".lazy");
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                observer.unobserve(entry.target);
+                entry.target.classList.add("visible"); // *poof* objeveno!
+                observer.unobserve(entry.target); // bye Felicia, už tě nesledujeme
             }
         });
     });
     lazyElements.forEach((el) => observer.observe(el));
 }
 
-// 2. Navigace a scrollování
+// 2. Navigace a scrollování - hlavní character energy webu
 function initNavigation() {
     const nav = document.querySelector("nav");
     const header = document.querySelector("header");
@@ -59,17 +59,17 @@ function initNavigation() {
     let lastScroll = window.scrollY;
     const headerHeight = header.offsetHeight;
     
-    // Počáteční kontrola, jestli jsme scrollnutí
+    // Jsme scrollnutí? Flex that nav
     if (window.scrollY > 10) {
         nav.classList.add("scrolled");
         body.classList.add("scrolled");
     }
     
-    // Event listener pro scroll
+    // Scrollovací vibe check
     window.addEventListener("scroll", () => {
         const currentScroll = window.scrollY;
         
-        // Přidáme třídu scrolled, když jsme scrollnutí
+        // Scroll > 10px = nav glow up
         if (currentScroll > 10) {
             nav.classList.add("scrolled");
             body.classList.add("scrolled");
@@ -78,17 +78,17 @@ function initNavigation() {
             body.classList.remove("scrolled");
         }
         
-        // Na mobilních zařízeních ovládáme schovávání navigace
+        // Mobile experience - hide/show nav like magic
         if (window.innerWidth <= 900) {
             if (currentScroll > lastScroll && currentScroll > headerHeight) {
-                // Scroll dolů – schovej nav
+                // Scrolling down? Nav ghosting...
                 nav.classList.add("hide-on-scroll");
             } else {
-                // Scroll nahoru – ukaž nav
+                // Scrolling up? Nav be like "I'm back"
                 nav.classList.remove("hide-on-scroll");
             }
         } else {
-            // Na desktopu vždy zobrazujeme navigaci
+            // Na PC nav stays in the chat
             nav.classList.remove("hide-on-scroll");
         }
         
@@ -96,7 +96,7 @@ function initNavigation() {
     });
 }
 
-// 3. Služby a jejich interaktivní prvky
+// 3. Služby a jejich interaktivní prvky - hover action be like woah
 function initServiceItems() {
     const serviceItems = document.querySelectorAll(".service-item");
 
@@ -107,7 +107,7 @@ function initServiceItems() {
             if (!serviceDetails.innerHTML.trim()) {
                 const title = item.querySelector("h3").textContent;
                 
-                // Dynamické vkládání obsahu podle nadpisu
+                // Dynamický content drop based on title - no cap
                 if (title === "Instalace vodovodních systémů") {
                     serviceDetails.innerHTML = `
                         <p><strong>Telefon:</strong> +420 736 763 109</p>
@@ -130,7 +130,7 @@ function initServiceItems() {
         });
     });
 
-    // Správa animací pro service items
+    // Animace go brrr - hover effects are lit
     serviceItems.forEach((item) => {
         item.addEventListener("mouseenter", () => {
             serviceItems.forEach((otherItem) => {
@@ -150,34 +150,34 @@ function initServiceItems() {
     });
 }
 
-// 4. Logo kliknutí
+// 4. Logo kliknutí - fr fr, žádné fancy URL reloady
 function initLogoClick() {
     const logoLink = document.querySelector(".nav-logo").parentElement;
 
     logoLink.addEventListener("click", (e) => {
         e.preventDefault();
-        // Načte stránku bez hash/search a vynutí reload odshora (nepoužije cache ani pozici)
+        // Čistý reset stránky, žádný URL garbage
         window.location.replace(window.location.origin + window.location.pathname);
     });
 }
 
-// 5. Copyright rok
+// 5. Copyright rok - protože manuální updaty jsou cringe
 function updateCopyrightYear() {
     const footer = document.querySelector("footer p");
     const currentYear = new Date().getFullYear();
     footer.innerHTML = `&copy; ${currentYear} Kaplan a syn s.r.o. Všechna práva vyhrazena.`;
 }
 
-// 6. Carousel / Slideshow
+// 6. Carousel / Slideshow - slay obrázky v pohybu
 function initCarousel() {
     const carouselImages = document.querySelector(".carousel-images");
-    if (!carouselImages) return; // Kontrola existence prvku
+    if (!carouselImages) return; // No carousel? No problem
     
     const images = document.querySelectorAll(".carousel-images img");
     const dotsContainer = document.querySelector(".carousel-dots");
     const imageCount = images.length;
 
-    // Duplikace prvního a posledního obrázku pro nekonečné posouvání
+    // Klonujeme první a poslední img pro infinite scroll loop - big brain energy
     const firstClone = images[0].cloneNode(true);
     const lastClone = images[imageCount - 1].cloneNode(true);
 
@@ -188,13 +188,13 @@ function initCarousel() {
     carouselImages.insertBefore(lastClone, images[0]);
 
     const allImages = document.querySelectorAll(".carousel-images img");
-    let currentIndex = 1; // Začínáme na prvním skutečném obrázku
-    const imageWidth = 100; // Šířka obrázku v procentech
-    const transitionTime = 1000; // Doba přechodu (v ms)
-    const intervalTime = 4000; // Interval mezi posuny (v ms)
+    let currentIndex = 1; // Začínáme s OG obrazkem
+    const imageWidth = 100; // Šířka v % - responsivita go brr
+    const transitionTime = 1000; // Transition time - not too fast not too slow
+    const intervalTime = 4000; // Interval mezi slides - perfektní timing fr
     let intervalId;
 
-    // Vytvoření teček
+    // Vytvoření dot navigace - UX on point
     for (let i = 0; i < imageCount; i++) {
         const dot = document.createElement("span");
         dot.classList.add("carousel-dot");
@@ -222,10 +222,10 @@ function initCarousel() {
         updateDots();
     }
 
-    // Nastavení výchozí pozice
+    // Default position check
     carouselImages.style.transform = `translateX(-${currentIndex * imageWidth}%)`;
 
-    // Automatické posouvání
+    // Auto-scroll - protože why not
     function startCarousel() {
         intervalId = setInterval(() => {
             currentIndex++;
@@ -260,7 +260,7 @@ function initCarousel() {
     startCarousel();
 }
 
-// 7. Přepínače obsahu
+// 7. Přepínače obsahu - skrýt/zobrazit, periodt
 function initContentToggles() {
     const cleaningToggle = document.querySelector('.cleaning-toggle');
     if (cleaningToggle) {
@@ -275,16 +275,16 @@ function initContentToggles() {
     }
 }
 
-// 8. Tlačítka pro zobrazení detailů
+// 8. Tlačítka pro more info - protože všichni chceme vědět tea
 function initDetailButtons() {
     document.querySelectorAll('.show-details-btn').forEach(btn => {
         btn.addEventListener('click', function (e) {
             e.preventDefault();
-            // Najdi rodičovský .service-item
+            // Najdi parent, bestie
             const serviceItem = btn.closest('.service-item');
-            // Najdi detail v rámci tohoto service-itemu
+            // Najdi skrytý content
             const details = serviceItem.querySelector('.cleaning-details');
-            // Zavři všechny ostatní otevřené detaily a nastav text tlačítka zpět na "Více informací"
+            // Close other tabs - sorry not sorry
             document.querySelectorAll('.cleaning-details').forEach(d => {
                 if (d !== details) {
                     d.classList.remove('open');
@@ -293,7 +293,7 @@ function initDetailButtons() {
                     if (otherBtn) otherBtn.textContent = "Více informací";
                 }
             });
-            // Přepni zobrazení detailu s animací a změň text tlačítka
+            // Toggle animation - smooth like butter
             if (!details.classList.contains('open')) {
                 details.style.display = 'block';
                 setTimeout(() => { details.classList.add('open'); }, 10);
@@ -307,7 +307,7 @@ function initDetailButtons() {
     });
 }
 
-// 9. Mobilní menu
+// 9. Mobilní menu - hamburger życie
 function initMobileMenu() {
     const hamburger = document.querySelector('.hamburger');
     const navUl = document.querySelector('nav ul');
@@ -316,7 +316,7 @@ function initMobileMenu() {
         navUl.classList.toggle('open');
     });
     
-    // Zavři menu po kliknutí na odkaz (na mobilu)
+    // Zavři menu po kliknutí - user experience 100
     navUl.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             navUl.classList.remove('open');
@@ -324,33 +324,33 @@ function initMobileMenu() {
     });
 }
 
-// 10. GDPR a cookies
+// 10. GDPR cookies - EU a jejich pravidla, smh
 function initGDPRConsent() {
     const cookieNotice = document.getElementById("cookie-notice");
-    if (!cookieNotice) return; // Kontrola existence prvku
+    if (!cookieNotice) return; // No notice? Anyways...
     
     const acceptButton = document.getElementById("cookie-accept");
     const declineButton = document.getElementById("cookie-decline");
     const moreInfoButton = document.getElementById("cookie-more");
     
-    // Zkontrolovat, jestli uživatel už přijal cookies
+    // Už jsi souhlasil? No need to bug you again
     const cookiesAccepted = localStorage.getItem("cookiesAccepted");
     
-    // Pokud již byly cookies přijaty, inicializujeme Google Analytics
+    // Cookies already accepted = let's track you bestie
     if (cookiesAccepted === "true") {
         loadGoogleAnalytics();
     } else {
-        // Zobrazí oznámení po krátké prodlevě
+        // Poprvé? Here's the popup
         setTimeout(function() {
             cookieNotice.style.display = "block";
-            // Animace pro plynulé zobrazení
+            // Fade in effect - no harsh popups
             setTimeout(function() {
                 cookieNotice.style.opacity = "1";
             }, 10);
         }, 1000);
     }
     
-    // Akce po kliknutí na tlačítko "Souhlasím"
+    // "Ano" button = tracking time
     acceptButton.addEventListener("click", function() {
         localStorage.setItem("cookiesAccepted", "true");
         cookieNotice.style.opacity = "0";
@@ -358,11 +358,11 @@ function initGDPRConsent() {
             cookieNotice.style.display = "none";
         }, 300);
         
-        // Načteme Google Analytics po souhlasu
+        // Load Google Analytics - kaching
         loadGoogleAnalytics();
     });
     
-    // Akce po kliknutí na tlačítko "Odmítnout"
+    // "Ne" button = we respect your privacy king
     declineButton.addEventListener("click", function() {
         localStorage.setItem("cookiesAccepted", "false");
         cookieNotice.style.opacity = "0";
@@ -370,25 +370,25 @@ function initGDPRConsent() {
             cookieNotice.style.display = "none";
         }, 300);
         
-        // Odmítnuto - GA nebude načteno
+        // No tracking for you
     });
     
-    // Akce po kliknutí na "Více informací"
+    // "Více info" = here's the tea about cookies
     moreInfoButton.addEventListener("click", function(e) {
         e.preventDefault();
         alert("Na našich stránkách používáme cookies pro zlepšení funkcí webu, analýzu návštěvnosti a personalizaci obsahu. Používáme cookies nezbytné pro fungování webu, analytické cookies pro zlepšování obsahu a technická cookies třetích stran (Google Maps). Detailní informace o cookies naleznete v našich zásadách ochrany osobních údajů.");
     });
 }
 
-// Funkce pro načtení Google Analytics
+// Funkce pro načtení Google Analytics - let the tracking begin
 function loadGoogleAnalytics() {
-    // Vytvoříme script tag pro GA
+    // Yeet that GA script
     const gaScript = document.createElement('script');
     gaScript.async = true;
     gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-PZ8Z3KS86C";
     document.head.appendChild(gaScript);
     
-    // Inicializujeme Google Analytics
+    // Init GA - big brother is watching
     if (typeof initializeGoogleAnalytics === 'function') {
         initializeGoogleAnalytics();
     }

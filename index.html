@@ -289,5 +289,19 @@
         </div>
     </div>
 </div>
+
+    <!-- Aktuality / News popup
+         Úprava: vlastnost data-enabled může být "allowed" nebo "disabled".
+         Pokud je povoleno (allowed), popup vyskočí po načtení stránky. -->
+    <div id="news-popup" data-enabled="allowed" class="news-popup" aria-hidden="true" role="dialog" aria-labelledby="news-popup-title" aria-modal="true">
+        <div class="news-popup__overlay" data-action="close"></div>
+        <div class="news-popup__content" role="document">
+            <button class="news-popup__close" aria-label="Zavřít">×</button>
+            <h3 id="news-popup-title">Upozornění</h3>
+            <p><strong>Dne 29.10.2025 bude z technických důvodů zavřeno.</strong></p>
+            <p>Omlouváme se za případné komplikace. V případě potřeby volejte: <a href="tel:+420736763109">+420 736 763 109</a></p>
+            <p>Kaplan a syn, s.r.o.</p>
+        </div>
+    </div>
 </body>
 </html>

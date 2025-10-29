@@ -29,7 +29,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // 10. GDPR cookies - protože EU be like "soukromí!!!1!"
     initGDPRConsent();
     
-    // 11. Zvýraznění značek v katalogu - protože cool URL linky ftw
+    // 11. Aktuality / news popup - zobrazí se ihned pokud je v HTML data-enabled="allowed"
+    initNewsPopup();
+
+    // 12. Zvýraznění značek v katalogu - protože cool URL linky ftw
     initBrandHighlight();
 });
 
@@ -434,6 +437,53 @@ function loadGoogleAnalytics() {
     if (typeof initializeGoogleAnalytics === 'function') {
         initializeGoogleAnalytics();
     }
+}
+
+// --- Aktuality / News popup ---
+function initNewsPopup() {
+    const popup = document.getElementById('news-popup');
+    if (!popup) return;
+
+    // Owner toggle via HTML attribute data-enabled="allowed" / "disabled"
+    const enabled = popup.getAttribute('data-enabled');
+    if (enabled === 'disabled') return;
+
+    // If user closed during this session, don't show again for this session
+    const dismissed = sessionStorage.getItem('newsPopupDismissed');
+    if (dismissed === 'true') return;
+
+    function openPopup() {
+        popup.classList.add('open');
+        popup.setAttribute('aria-hidden', 'false');
+    }
+
+    function closePopup() {
+        popup.classList.remove('open');
+        popup.setAttribute('aria-hidden', 'true');
+        // remember dismissal for this session
+        sessionStorage.setItem('newsPopupDismissed', 'true');
+    }
+
+    // show immediately (after a tiny defer to allow paint)
+    setTimeout(openPopup, 60);
+
+    // Close handlers: close button and overlay
+    const closeBtn = popup.querySelector('.news-popup__close');
+    const overlay = popup.querySelector('.news-popup__overlay');
+
+    if (closeBtn) closeBtn.addEventListener('click', closePopup);
+    if (overlay) overlay.addEventListener('click', closePopup);
+
+    // ESC to close
+    function onKey(e) {
+        if (e.key === 'Escape') closePopup();
+    }
+    document.addEventListener('keydown', onKey);
+
+    // Cleanup if popup gets removed from DOM later
+    popup.addEventListener('remove', () => {
+        document.removeEventListener('keydown', onKey);
+    });
 }
 
 

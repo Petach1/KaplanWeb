@@ -203,7 +203,7 @@ nav a {
     height: 100%;
     z-index: 0;
     pointer-events: none;
-    background: url('https://github.com/Petach1/KaplanWeb/blob/main/IMG_8328.webp?raw=true') repeat-x;
+    background: url('https://github.com/Petach1/KaplanWeb/blob/main/obrazky/IMG_8328.webp?raw=true') repeat-x;
     background-size: auto 100%;
     animation: panoramaMove 60s linear infinite;
     filter: grayscale(0.1) brightness(0.6) blur(4px);

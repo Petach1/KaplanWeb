@@ -294,20 +294,28 @@
          Úprava: vlastnost data-enabled může být "allowed" nebo "disabled".
          Pokud je povoleno (allowed), popup vyskočí po načtení stránky. -->
     <div id="news-popup" data-enabled="allowed" class="news-popup" aria-hidden="true" role="dialog" aria-labelledby="news-popup-title" aria-modal="true">
-        <div class="news-popup__overlay" data-action="close"></div>
-        <div class="news-popup__content" role="document" justify-content="center">
-            <button class="news-popup__close" aria-label="Zavřít">×</button>
-            <h3 id="news-popup-title">Provozní doba o vánočních svátcích:</h3>
-            <p><strong>22.12</strong> 7:45 - 16:00</p>
-            <p><strong>23.12</strong> 7:45 - 12:00</p>
-            <p><strong>24 - 28.12</strong> ZAVŘENO</p>
-            <p><strong>29.12</strong> 7:45 - 12:00</p>
-            <p><strong>30.12</strong> 7:45 - 12:00</p>
-            <p><strong>31.12 - 4.1</strong> ZAVŘENO</p>
-            <p><strong>5.1</strong> 7:45 - 16:30</p>
-            <p>Omlouváme se za případné komplikace. V případě potřeby volejte: <a href="tel:+420736763109">+420 736 763 109</a></p>
-            <p>Kaplan a syn, s.r.o.</p>
+    <div class="news-popup__overlay" data-action="close"></div>
+    <div class="news-popup__content" role="document">
+        <button class="news-popup__close" aria-label="Zavřít">×</button>
+
+        <h3 id="news-popup-title">Provozní doba o vánočních svátcích:</h3>
+
+        <div class="opening-hours">
+            <p><strong>22.12</strong> 7:45 – 16:00</p>
+            <p><strong>23.12</strong> 7:45 – 12:00</p>
+            <p><strong>24 – 28.12</strong> ZAVŘENO</p>
+            <p><strong>29.12</strong> 7:45 – 12:00</p>
+            <p><strong>30.12</strong> 7:45 – 12:00</p>
+            <p><strong>31.12 – 4.1</strong> ZAVŘENO</p>
+            <p><strong>5.1</strong> 7:45 – 16:30</p>
         </div>
+
+        <p>Omlouváme se za případné komplikace. V případě potřeby volejte:
+            <a href="tel:+420736763109">+420 736 763 109</a>
+        </p>
+        <p>Kaplan a syn, s.r.o.</p>
     </div>
+</div>
+
 </body>
 </html>

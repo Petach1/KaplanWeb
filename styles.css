@@ -12,6 +12,19 @@ body {
     overflow-y: auto; /* Zajistí správné fungování scrollování */
     overscroll-behavior-y: none; /* Zabrání přesahování scrollu na některých prohlížečích */
 }
+.opening-hours {
+    text-align: center;
+}
+
+.news-popup__content p {
+    text-align: left;
+}
+
+.opening-hours p {
+    text-align: center;
+    margin: 0.3em 0;
+}
+
 
 .container {
     width: 90%;
